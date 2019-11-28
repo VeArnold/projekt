@@ -1,26 +1,36 @@
-<!doctype html>
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
 
-    <title></title>
-    <meta name="description" content="The HTML5 Herald">
+    <title>WIP</title>
 
     <link rel="stylesheet" href="css/styles.css">
-    <script type="text/javascript" src="js/scripts.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Hammersmith+One&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/0b68bdd3ee.js" crossorigin="anonymous"></script>
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 </head>
 
 <body>
+	<div id="dimmer"></div>
     <div class="navbar">
-        <div class="navbar-logo navbar-left"><a href="index.html">Logo</a></div>
-        <div class="navbar-item navbar-left navbar-selected" ><a href="#">Megapikk tekst 1</a></div>
-        <div class="navbar-item navbar-left"><a href="#">Text 2</a></div>
-        <div class="navbar-item navbar-right"><a href="#"><i class="fas fa-bars"></i></a></div>
+        <a href="index.html" class="navbar-logo navbar-left navbar-selected">Logo</a>
+        <a href="grupid.html" class="navbar-item navbar-left">Grupid</a>
+        <a href="soovita.html" class="navbar-item navbar-left">Soovita mänge</a>
+        <div class="navbar-item navbar-right user-menu"><i class="fa fa-bars"></i></div>
     </div>
-    <h1>Pealkiri</h1>
-    <div style="height: 10000px;"></div>
+    <div class="sidebar sidebar-user">
+    	<div class="sidebar-item">
+    		<div class="sidebar-avatar"><img src="img/default-avatar.png"></div> 
+    		<div class="sidebar-username">Kasutaja</div>
+    	</div>
+    	<div class="sidebar-item">Muuda profiili</div>
+    	<div class="sidebar-item">Logi välja</div>
+    </div>
+    <div class="page">
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js'></script>
+    <script type="text/javascript" src="js/main.js"></script>
 </body>
 </html>
