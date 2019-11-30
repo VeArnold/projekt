@@ -6,7 +6,8 @@ let selectedRanks = new Set();
 let selectedTeamSize;
 
 window.addEventListener('load', function() {
-    readGameConfig()
+    readGameConfig();
+    readGroupsInfo();
     let button = document.getElementById("addNewGroup");
     button.addEventListener("click", function() {
         addNewGroup();
@@ -329,6 +330,7 @@ function createSubmitButton() {
 }
 
 function submitForm() {
+    console.log("Submitting form");
     // Game and teamsize have to be filled in every case
     if (selectedGame != null && selectedTeamSize != null && selectedTeamSize !== 0) {
         let teamRequest;
@@ -336,7 +338,8 @@ function submitForm() {
             teamRequest = {
                 game: selectedGame,
                 boardGame: selectedBoardGame,
-                teamsize: selectedTeamSize
+                teamsize: selectedTeamSize,
+                user: "Kasutaja"
             }
         }
         else {
@@ -344,23 +347,37 @@ function submitForm() {
                 game: selectedGame,
                 gamemode: selectedGamemode,
                 subGamemode: selectedSubGamemode,
-                ranks: selectedRanks,
-                teamsize: selectedTeamSize
+                ranks: Array.from(selectedRanks),
+                teamsize: selectedTeamSize,
+                user: "Kasutaja"
             }
         }
-        filename = "data/listings.json";
-        writeToFile(filename, teamRequest);
+        // TODO: Write to file
+        // While PHP isn't working, let's just use localStorage to store this data
+        let groupsList = JSON.parse(localStorage.getItem("groupsList"));
+        groupsList.groups.push(teamRequest);
+        localStorage.setItem("groupsList", JSON.stringify(groupsList));
+        addNewGroup();
     }
 }
 
 function writeToFile(filename, data) {
+    let data_serialized = JSON.stringify(data);
+    console.log(data_serialized);
 
+    let existingData = JSON.parse(localStorage.getItem("groupsList"));
+    console.log(existingData);
 }
 
 // Function to add or remove selected ranks from global list
 function addOrRemoveRank(rank, button) {
     button.classList.toggle("selectedButton");
-    selectedRanks.delete(rank);
+    if (selectedRanks.has(rank)) {
+        selectedRanks.delete(rank);
+    }
+    else {
+        selectedRanks.add(rank);
+    }
 }
 
 function buttonClicked(button, classname) {
@@ -425,8 +442,19 @@ function readGameConfigFile(file)
         })
 }
 
+function readGroupsInfo() {
+    let url = getBaseUrl() + "data/groupsList.json";
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            if (localStorage.getItem("groupsList") == null) {
+                localStorage.setItem("groupsList", JSON.stringify(data));
+            }
+        })
+}
+
 function getBaseUrl() {
-    url = window.location.href;
+    let url = window.location.href;
     let to = url.lastIndexOf('/');
     to = to === -1 ? url.length : to + 1;
     url = url.substring(0, to);
