@@ -8,142 +8,113 @@
 
     <link rel="stylesheet" href="css/styles.css">
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+</head>
+
+<body>
+    <div id="dimmer"></div>
+    <div class="navbar">
+        <div class="navbar-logo navbar-left"><a href="index.html"><div class="img-logo"></div></a></div>
+        <a href="grupid.html" class="navbar-item navbar-left">GRUPID</a>
+        <a href="soovita.html" class="navbar-item navbar-left">SOOVITA MÄNGE</a>
+        <div class="navbar-item navbar-right user-menu"><i class="fa fa-bars"></i></div>
+    </div>
+    <div class="sidebar sidebar-user">
+        <div class="sidebar-item">
+            <div class="sidebar-avatar"><img src="img/default-avatar.png"></div>
+            <div class="sidebar-username">Kasutaja</div>
+        </div>
+        <div class="sidebar-item">Muuda profiili</div>
+        <div class="sidebar-item">Logi välja</div>
+    </div>
+    <div class="page">
+        <div class="buttons-container">
+            <button class="filterButton" id="addNewGroup">Lisa uus grupp</button>
+        </div>
+        <div class="groups">
+            <div class="groups-list-container" id="groupsListContainer">
+            </div>
+            <div class="groups-filters-container">
+                Filtrid vms
+            </div>
+        </div>
+
+                <div class="modal visible" id="addGame2">
+                    <div class="modal-inside">
+                        <div class="buttonsContainer" id="gameButtonsContainer2">
+                            <div class="game-button gameFilter selectedButton" id="csgoButton" type="button" value="Counter-Strike: Global Offensive"></div>
+                            <div class="game-button gameFilter" id="minecraftButton" type="button" value="Minecraft"></div>
+                            <div class="game-button gameFilter" id="ck2Button" type="button" value="Crusader Kings 2"></div>
+                            <div class="game-button gameFilter" id="lolButton" type="button" value="League of Legends"></div>
+                            <div class="game-button gameFilter" id="boardGamesButton" type="button" value="Lauamängud"></div>
+                        </div>
+                        <div id="boardGameFilters2"></div>
+                        <div class="filter-button-group" id="gamemodeFilters2">
+                            <input class="filterButton gamemodeFilter selected-filter-button" id="csgocompButton" type="button" value="Competitive">
+
+                            <input class="filterButton gamemodeFilter" id="csgowingmanButton" type="button" value="Wingman">
+
+                            <input class="filterButton gamemodeFilter" id="csgodangerZoneButton" type="button" value="Danger Zone">
+
+                            <input class="filterButton gamemodeFilter" id="csgocasualButton" type="button" value="Casual">
+
+                            <input class="filterButton gamemodeFilter" id="csgooperationsButton" type="button" value="Operations">
+                        </div>
+                        <div id="subGamemodeFilters2"></div>
+                        <div class="rank-filters" id="rankFilters2">
+                            <div class="rank-col">
+                                <div class="rankFilter checkBoxButton" id="csgoRank0Button">Silver I</div>
+                                <div class="rankFilter checkBoxButton" id="csgoRank1Button">Silver II</div>
+                                <div class="rankFilter checkBoxButton" id="csgoRank2Button">Silver III</div>
+                                <div class="rankFilter checkBoxButton" id="csgoRank3Button">Silver IV</div>
+                                <div class="rankFilter checkBoxButton" id="csgoRank4Button">Silver Elite</div>
+                                <div class="rankFilter checkBoxButton" id="csgoRank5Button">Silver Elite Master</div>
+                            </div>
+                            <div class="rank-col">
+                                <div class="rankFilter checkBoxButton" id="csgoRank6Button">Gold Nova I</div>
+                                <div class="rankFilter checkBoxButton" id="csgoRank7Button">Gold Nova II</div>
+                                <div class="rankFilter checkBoxButton" id="csgoRank8Button">Gold Nova III</div>
+                                <div class="rankFilter checkBoxButton" id="csgoRank9Button">Gold Nova Master</div>
+                                <div class="rankFilter checkBoxButton" id="csgoRank10Button">Master Guardian I</div>
+                                <div class="rankFilter checkBoxButton" id="csgoRank11Button">Master Guardian II</div>
+                            </div>
+                            <div class="rank-col">
+                                <div class="rankFilter checkBoxButton" id="csgoRank12Button">Master Guardian Elite</div>
+                                <div class="rankFilter checkBoxButton" id="csgoRank13Button">Distinguished Master Guardian</div>
+                                <div class="rankFilter checkBoxButton" id="csgoRank14Button">Legendary Eagle</div>
+                                <div class="rankFilter checkBoxButton" id="csgoRank15Button">Legendary Eagle Master</div>
+                                <div class="rankFilter checkBoxButton" id="csgoRank16Button">Supreme Master First Class</div>
+                                <div class="rankFilter checkBoxButton" id="csgoRank17Button">The Global Elite</div>
+                            </div>
+                        </div>
+                        <div id="numericalRankFilters2"></div>
+                        <div id="teamSizeFilters2">
+                            <input type="range" min="2" max="5" value="5" class="teamSizeSlider teamSizeFilter" id="teamSizeSlider">
+                            <input type="number" name="Team size" min="2" max="5" value="5" class="team-size-box teamSizeFilter" id="teamSizeSliderValue">
+                        </div>
+                        <div id="submitFilters2">
+                            <input class="submitFiltersButton filterButton" id="submitFilters2" type="button" value="Submit">
+                            <input class="resetFiltersButton filterButton" id="resetFilters" type="button" value="Reset filters">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+    <div class="modal" id="addGame">
+        <div class="modal-inside">
+            <div class="buttonsContainer" id="gameButtonsContainer"></div>
+            <div id="boardGameFilters"></div>
+            <div id="gamemodeFilters"></div>
+            <div id="subGamemodeFilters"></div>
+            <div id="rankFilters"></div>
+            <div id="numericalRankFilters"></div>
+            <div id="teamSizeFilters"></div>
+            <div id="submitFilters"></div>
+        </div>
+    </div>
+
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js'></script>
     <script type="text/javascript" src="js/main.js"></script>
     <script type="text/javascript" src="js/grupid.js"></script>
-</head>
-
-<body>
-<div id="dimmer"></div>
-<div class="navbar">
-    <div class="navbar-logo navbar-left"><a href="index.html"><div class="img-logo"></div></a></div>
-    <a href="grupid.html" class="navbar-item navbar-left">GRUPID</a>
-    <a href="soovita.html" class="navbar-item navbar-left">SOOVITA MÄNGE</a>
-    <div class="navbar-item navbar-right user-menu"><i class="fa fa-bars"></i></div>
-</div>
-<div class="sidebar sidebar-user">
-    <div class="sidebar-item">
-        <div class="sidebar-avatar"><img src="img/default-avatar.png"></div>
-        <div class="sidebar-username">Kasutaja</div>
-    </div>
-    <div class="sidebar-item">Muuda profiili</div>
-    <div class="sidebar-item">Logi välja</div>
-</div>
-<div class="page">
-    <div class="buttons-container">
-        <button class="filterButton" id="addNewGroup">Lisa uus grupp</button>
-    </div>
-    <div class="groups">
-        <div class="groups-list-container" id="groupsListContainer">
-        </div>
-        <div class="groups-filters-container">
-            Filtrid vms
-        </div>
-    </div>
-    <div>
-        Mark tee ilusaks, HTML pmst on selline praegu:
-        <div>
-            <div class="modal visible" id="addGame2">
-                <div class="modal-inside">
-                    <div class="buttonsContainer" id="gameButtonsContainer2">
-                        <div class="gameFilter selectedButton" id="csgoButton" type="button" value="Counter-Strike: Global Offensive">
-                            <img class="icon-hidden" src="img/csgo_c.png" alt="Counter-Strike: Global OffensiveSelectedIcon" style="height: 60px;">
-                            <img class="icon-visible" src="img/csgo_gs.png" alt="Counter-Strike: Global OffensiveIcon" style="height: 60px;">
-                        </div>
-
-                        <div class="gameFilter" id="minecraftButton" type="button" value="Minecraft">
-                            <img class="icon-hidden" src="img/minecraft_c.png" alt="MinecraftSelectedIcon" style="height: 60px;">
-                            <img class="icon-visible" src="img/minecraft_gs.png" alt="MinecraftIcon" style="height: 60px;">
-                        </div>
-
-                        <div class="gameFilter" id="ck2Button" type="button" value="Crusader Kings 2">
-                            <img class="icon-hidden" src="img/crusader_kings_c.png" alt="Crusader Kings 2SelectedIcon" style="height: 60px;">
-                            <img class="icon-visible" src="img/crusader_kings_gs.png" alt="Crusader Kings 2Icon" style="height: 60px;">
-                        </div>
-
-                        <div class="gameFilter" id="lolButton" type="button" value="League of Legends">
-                            <img class="icon-hidden" src="img/lol_c.png" alt="League of LegendsSelectedIcon" style="height: 60px;">
-                            <img class="icon-visible" src="img/lol_gs.png" alt="League of LegendsIcon" style="height: 60px;">
-                        </div>
-
-                        <div class="filterButton gameFilter" id="boardGamesButton" type="button" value="Lauamängud">
-                        </div></div>
-                    <div id="boardGameFilters2"></div>
-                    <div id="gamemodeFilters2">
-                        <input class="filterButton gamemodeFilter selectedButton" id="csgocompButton" type="button" value="Competetive">
-
-                        <input class="filterButton gamemodeFilter" id="csgowingmanButton" type="button" value="Wingman">
-
-                        <input class="filterButton gamemodeFilter" id="csgodangerZoneButton" type="button" value="Danger Zone">
-
-                        <input class="filterButton gamemodeFilter" id="csgocasualButton" type="button" value="Casual">
-
-                        <input class="filterButton gamemodeFilter" id="csgooperationsButton" type="button" value="Operations">
-                    </div>
-                    <div id="subGamemodeFilters2"></div>
-                    <div id="rankFilters2">
-                        <div class="rankFilter checkBoxButton" id="csgoRank0Button">Silver I</div>
-
-                        <div class="rankFilter checkBoxButton" id="csgoRank1Button">Silver II</div>
-
-                        <div class="rankFilter checkBoxButton" id="csgoRank2Button">Silver III</div>
-
-                        <div class="rankFilter checkBoxButton" id="csgoRank3Button">Silver IV</div>
-
-                        <div class="rankFilter checkBoxButton" id="csgoRank4Button">Silver Elite</div>
-
-                        <div class="rankFilter checkBoxButton" id="csgoRank5Button">Silver Elite Master</div>
-
-                        <div class="rankFilter checkBoxButton" id="csgoRank6Button">Gold Nova I</div>
-
-                        <div class="rankFilter checkBoxButton" id="csgoRank7Button">Gold Nova II</div>
-
-                        <div class="rankFilter checkBoxButton" id="csgoRank8Button">Gold Nova III</div>
-
-                        <div class="rankFilter checkBoxButton" id="csgoRank9Button">Gold Nova Master</div>
-
-                        <div class="rankFilter checkBoxButton" id="csgoRank10Button">Master Guardian I</div>
-
-                        <div class="rankFilter checkBoxButton" id="csgoRank11Button">Master Guardian II</div>
-
-                        <div class="rankFilter checkBoxButton" id="csgoRank12Button">Master Guardian Elite</div>
-
-                        <div class="rankFilter checkBoxButton" id="csgoRank13Button">Distinguished Master Guardian</div>
-
-                        <div class="rankFilter checkBoxButton" id="csgoRank14Button">Legendary Eagle</div>
-
-                        <div class="rankFilter checkBoxButton" id="csgoRank15Button">Legendary Eagle Master</div>
-
-                        <div class="rankFilter checkBoxButton" id="csgoRank16Button">Supreme Master First Class</div>
-
-                        <div class="rankFilter checkBoxButton" id="csgoRank17Button">The Global Elite</div>
-                    </div>
-                    <div id="numericalRankFilters2"></div>
-                    <div id="teamSizeFilters2">
-                        <input type="range" min="2" max="5" value="5" class="teamSizeSlider teamSizeFilter" id="teamSizeSlider">
-                        <input type="number" name="Team size" min="2" max="5" value="5" class="teamSizeFilter" id="teamSizeSliderValue">
-                    </div>
-                    <div id="submitFilters2">
-                        <input class="submitFiltersButton filterButton" id="submitFilters2" type="button" value="Submit">
-                        <input class="resetFiltersButton filterButton" id="resetFilters" type="button" value="Reset filters">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="modal" id="addGame">
-    <div class="modal-inside">
-        <div class="buttonsContainer" id="gameButtonsContainer"></div>
-        <div id="boardGameFilters"></div>
-        <div id="gamemodeFilters"></div>
-        <div id="subGamemodeFilters"></div>
-        <div id="rankFilters"></div>
-        <div id="numericalRankFilters"></div>
-        <div id="teamSizeFilters"></div>
-        <div id="submitFilters"></div>
-    </div>
-</div>
 </body>
 </html>

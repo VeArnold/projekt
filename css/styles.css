@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css?family=Hammersmith+One&display=swap');
-
 html {
     font-size: 16px;
 }
@@ -12,11 +10,15 @@ body {
     -o-animation:100s scroll infinite linear;
     -ms-animation:100s scroll infinite linear;
     animation:100s scroll infinite linear;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    overflow: auto;
+    top: 0;
+    left: 0;
+    height: 100%;
+    overflow: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: #F0F1ED;
 }
 
 @-ms-keyframes scroll{
@@ -88,7 +90,7 @@ body {
     display: flex;
     flex-direction: row;
     border-right: 1px solid #505050;
-    background: #743c3d
+    background: #743c3d;
 }
 
 .navbar-selected {
@@ -113,7 +115,7 @@ body {
     display: none;
     flex-direction: column;
     position: fixed;
-    width: 200px;
+    width: 15rem;
     height: 100%;
     top: 46px;
     right: 0;
@@ -170,21 +172,14 @@ body {
     z-index: 1;
 }
 
-/* Lingid */
-a {
-    text-decoration: none;
-    color: #F0F1ED;
-}
-
 /* Modal */
 .modal {
-    background: rgba(0, 0, 0, .4);
-    cursor: pointer;
     display: none;
     height: 100%;
     position: fixed;
     text-align: center;
-    top: 10%;
+    top: 3.5rem;
+    left: 0;
     width: 100%;
     z-index: 10000;
     background: none;
@@ -195,48 +190,188 @@ a {
 }
 
 .modal-inside {
-    background: none;
+    background: #202525;
     border: 1px solid darkorange;
-    box-shadow: 10px 10px 60px #555;
+    box-shadow: 0px 0px 10px #555;
     display: inline-block;
     min-height: 100px;
     vertical-align: middle;
-    width: 70%;
+    width: 60%;
     height: 80%;
     position: relative;
     padding: 15px 5%;
-    overflow: scroll;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.modal-inside::-webkit-scrollbar {
+    width: 0.8em; 
+}
+.modal-inside::scrollbar { 
+    width: 0.8em; 
+}
+
+.modal-inside::-webkit-scrollbar-track { 
+    box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+}
+.modal-inside::scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+}
+
+.modal-inside::-webkit-scrollbar-thumb { 
+    background: #573a39;
+}
+.modal-inside::scrollbar-thumb {
+    background: #573a39;  
 }
 
 /* Filtrid */
-.buttons-container {
-    background: rgba(35, 35, 35, 0.5)
+.buttonsContainer {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.buttonsContainer::-webkit-scrollbar {
+    height: 0.8em; 
+}
+.buttonsContainer::scrollbar { 
+    height: 0.8em; 
+}
+
+.buttonsContainer::-webkit-scrollbar-thumb { 
+    background: #573a39;
+}
+.buttonsContainer::scrollbar-thumb {
+    background: #573a39;
+}
+
+.game-button {
+    min-width: 180px;
+    min-height: 60px;
+    border-bottom: none;
+    cursor: pointer;
+}
+
+.game-button:hover, .selectedButton {
+    border-bottom: 3px solid darkorange;
+}
+
+#csgoButton, #minecraftButton, #ck2Button, #lolButton, #boardGamesButton {
+    background-repeat: no-repeat;
+    background-size: 180px 60px;
+}
+
+#csgoButton {
+    background-image: url(../img/csgo_gs.png);
+}
+#csgoButton:hover, #csgoButton.selectedButton {
+    background-image: url(../img/csgo_c.png);
+}
+#minecraftButton {
+    background-image: url(../img/minecraft_gs.png);
+}
+#minecraftButton:hover, #minecraftButton.selectedButton {
+    background-image: url(../img/minecraft_c.png);
+}
+#ck2Button {
+    background-image: url(../img/crusader_kings_gs.png);
+}
+#ck2Button:hover, #ck2Button.selectedButton {
+    background-image: url(../img/crusader_kings_c.png);
+}
+#lolButton {
+    background-image: url(../img/lol_gs.png);
+}
+#lolButton:hover, #lolButton.selectedButton {
+    background-image: url(../img/lol_c.png);
+}
+#boardGamesButton {
+    background-image: url(../img/lauamängud_gs.png);
+}
+#boardGamesButton:hover, #boardGamesButton.selectedButton {
+    background-image: url(../img/lauamängud_c.png);
 }
 
 .filterButton {
+    cursor: pointer;
     border: 1px solid darkorange;
     padding: 0.5rem;
-    color: black;
-    background: white;
+    color: darkorange;
+    background: #333;
     margin: 0.2rem;
 }
 
-.filterButton:hover {
-    background: orange;
+.filterButton:hover, .selected-filter-button {
+    background: #573a39;
+    color: white;
+}
+
+.filter-button-group {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.teamSizeSlider {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 22px;
+    background: #333;
+    border: 1px solid darkorange;
+    outline: none;
+    margin-top: 8px;
+}
+.teamSizeSlider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 22px;
+    background: #573a39;
+    cursor: pointer;
+}
+.teamSizeSlider::-moz-range-thumb {
+    width: 15px;
+    height: 22px;
+    background: #573a39;
+    cursor: pointer;
+}
+
+.team-size-box {
+    margin-bottom: 10px;
+    height: 20px;
+    background: #333;
+    border: 1px solid darkorange;
+    color: darkorange;
+    position: relative;
+    top: -8px;
 }
 
 .rankFilters {
     width: auto;
 }
 
+.rank-filters {
+    font-size: 15px;
+}
+
+.rank-col {
+    display: inline-flex;
+    flex-direction: column;
+    width: 32%;
+    margin: 0;
+}
+
+.rank-col div {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .checkBoxButton {
     border: 1px solid darkorange;
     padding: 0.5rem;
-    color: white;
-}
-
-.selectedButton {
-    background: darkorange;
     color: white;
 }
 
