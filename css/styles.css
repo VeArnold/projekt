@@ -153,9 +153,10 @@ body {
 
 /* Page */
 .page {
-    width: 100%;
+    width: auto;
     height: 100%;
     margin-top: 46px;
+    padding: 2rem 4rem 1rem;
 }
 
 #dimmer {
@@ -208,6 +209,10 @@ a {
 }
 
 /* Filtrid */
+.buttons-container {
+    background: rgba(35, 35, 35, 0.5)
+}
+
 .filterButton {
     border: 1px solid darkorange;
     padding: 0.5rem;
@@ -233,4 +238,45 @@ a {
 .selectedButton {
     background: darkorange;
     color: white;
+}
+
+/* Gruppide list */
+.groups {
+    display: flex;
+    flex-direction: row;
+}
+
+.groups-list-container {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    margin: 1rem;
+}
+
+.groups-filters-container {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    margin: 1rem;
+}
+
+.groupRequestItem {
+    border: 1px solid black;
+    display: flex;
+    flex-direction: row;
+    background: orange;
+    color: white;
+    padding: 0.3rem 0.8rem 0.3rem;
+}
+
+.groupRequestItemGame .groupRequestItemData {
+    display: flex;
+    flex-direction: row;
+    padding: 0.4rem;
+    margin-left: 1rem;
+    width: 30%;
+}
+
+.groupRequestItemGame {
+    color: black;
 }

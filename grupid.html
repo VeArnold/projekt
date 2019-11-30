@@ -11,6 +11,7 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.5/jquery-ui.min.js'></script>
     <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript" src="js/grupid.js"></script>
 </head>
 
 <body>
@@ -30,7 +31,17 @@
     <div class="sidebar-item">Logi välja</div>
 </div>
 <div class="page">
-    <button id="addNewGroup">Lisa uus grupp</button>
+    <div class="buttons-container">
+        <button class="filterButton" id="addNewGroup">Lisa uus grupp</button>
+    </div>
+    <div class="groups">
+        <div class="groups-list-container" id="groupsListContainer">
+        </div>
+        <div class="groups-filters-container">
+            Filtrid vms
+        </div>
+    </div>
+
 </div>
 <div class="modal" id="addGame">
     <div class="modal-inside">

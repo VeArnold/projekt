@@ -1,17 +1,13 @@
 {
   "groups": [
-    {"game":"minecraft","gamemode":"online","subGamemode":null,"ranks":{},"teamsize":15, "user": "Maiu"},
-    {"game":"csgo","gamemode":"wingman","subGamemode":null,"ranks":["Silver IV","Silver Elite","Gold Nova I"],"teamsize":2,
-      "user": "Tanel"
-    },
-    {"game":"minecraft","gamemode":"lan","subGamemode":null,"ranks":{},"teamsize":14,
-      "user": "Toomas"
-    },
-    {"game":"minecraft","gamemode":"realms","subGamemode":null,"ranks":{},"teamsize":30, "user": "Joonas"},
-    {"game":"csgo","gamemode":"comp","subGamemode":null,"ranks":["Gold Nova I","Silver Elite Master","Silver Elite","Gold Nova II"],"teamsize":5, "user": "RauL"},
-    {"game":"ck2","gamemode":null,"subGamemode":null,"ranks":[],"teamsize":12, "user": "Mark"},
-    {"game":"csgo","gamemode":"comp","subGamemode":null,"ranks":["The Global Elite"],"teamsize":5, "user": "Arnold"},
-    {"game":"boardGame","boardGame":"explodingKittens","teamsize":9, "user": "Tanel"},
-    {"game":"lol","gamemode":"summonersRift","subGamemode":"rankedMM","ranks":["Master","Grandmaster","Diamond I"],"teamsize":5, "user": "Kristina"}
+    {"game":"minecraft","gamemode":"online","subGamemode":null,"ranks":{},"teamsize":15, "user": "Maiu", "registeredUsers": ["Toomas", "Andres"]},
+    {"game":"csgo","gamemode":"wingman","subGamemode":null,"ranks":["Silver IV","Silver Elite","Gold Nova I"],"teamsize":2, "user": "Tanel", "registeredUsers": []},
+    {"game":"minecraft","gamemode":"lan","subGamemode":null,"ranks":{},"teamsize":14, "user": "Toomas", "registeredUsers": ["Marju", "Kalle", "Väino", "Guido", "Mauno", "Leemet", "Vallo"]},
+    {"game":"minecraft","gamemode":"realms","subGamemode":null,"ranks":{},"teamsize":30, "user": "Joonas", "registeredUsers": []},
+    {"game":"csgo","gamemode":"comp","subGamemode":null,"ranks":["Gold Nova I","Silver Elite Master","Silver Elite","Gold Nova II"],"teamsize":5, "user": "Raul", "registeredUsers": ["Ants"]},
+    {"game":"ck2","gamemode":null,"subGamemode":null,"ranks":[],"teamsize":12, "user": "Mark", "registeredUsers": []},
+    {"game":"csgo","gamemode":"comp","subGamemode":null,"ranks":["The Global Elite"],"teamsize":5, "user": "Arnold", "registeredUsers": []},
+    {"game":"boardGame","boardGame":"explodingKittens","teamsize":9, "user": "Tanel", "registeredUsers": ["Eret"]},
+    {"game":"lol","gamemode":"summonersRift","subGamemode":"rankedMM","ranks":["Master","Grandmaster","Diamond I"],"teamsize":5, "user": "Kristina", "registeredUsers": ["Hendrik"]}
   ]
 }
