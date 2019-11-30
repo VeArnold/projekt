@@ -291,3 +291,16 @@ a {
 .groupRequestItemGame {
     color: black;
 }
+
+/* List filters */
+.filter-row {
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+    overflow: scroll;
+}
+
+.rank-filter-column {
+    display: flex;
+    flex-direction: column;
+}

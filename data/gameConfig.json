@@ -28,7 +28,7 @@
       "numericalRanks": false,
       "gamemodes": [
         {
-          "name": "Competetive",
+          "name": "Competitive",
           "id": "comp",
           "maxTeamSize": 5
         },

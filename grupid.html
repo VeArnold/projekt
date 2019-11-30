@@ -37,103 +37,60 @@
     <div class="groups">
         <div class="groups-list-container" id="groupsListContainer">
         </div>
-        <div class="groups-filters-container">
-            Filtrid vms
-        </div>
-    </div>
-    <div>
-        Mark tee ilusaks, HTML pmst on selline praegu:
-        <div>
-            <div class="modal visible" id="addGame2">
-                <div class="modal-inside">
-                    <div class="buttonsContainer" id="gameButtonsContainer2">
-                        <div class="gameFilter selectedButton" id="csgoButton" type="button" value="Counter-Strike: Global Offensive">
-                            <img class="icon-hidden" src="img/csgo_c.png" alt="Counter-Strike: Global OffensiveSelectedIcon" style="height: 60px;">
-                            <img class="icon-visible" src="img/csgo_gs.png" alt="Counter-Strike: Global OffensiveIcon" style="height: 60px;">
-                        </div>
-
-                        <div class="gameFilter" id="minecraftButton" type="button" value="Minecraft">
-                            <img class="icon-hidden" src="img/minecraft_c.png" alt="MinecraftSelectedIcon" style="height: 60px;">
-                            <img class="icon-visible" src="img/minecraft_gs.png" alt="MinecraftIcon" style="height: 60px;">
-                        </div>
-
-                        <div class="gameFilter" id="ck2Button" type="button" value="Crusader Kings 2">
-                            <img class="icon-hidden" src="img/crusader_kings_c.png" alt="Crusader Kings 2SelectedIcon" style="height: 60px;">
-                            <img class="icon-visible" src="img/crusader_kings_gs.png" alt="Crusader Kings 2Icon" style="height: 60px;">
-                        </div>
-
-                        <div class="gameFilter" id="lolButton" type="button" value="League of Legends">
-                            <img class="icon-hidden" src="img/lol_c.png" alt="League of LegendsSelectedIcon" style="height: 60px;">
-                            <img class="icon-visible" src="img/lol_gs.png" alt="League of LegendsIcon" style="height: 60px;">
-                        </div>
-
-                        <div class="filterButton gameFilter" id="boardGamesButton" type="button" value="Lauamängud">
-                        </div></div>
-                    <div id="boardGameFilters2"></div>
-                    <div id="gamemodeFilters2">
-                        <input class="filterButton gamemodeFilter selectedButton" id="csgocompButton" type="button" value="Competetive">
-
-                        <input class="filterButton gamemodeFilter" id="csgowingmanButton" type="button" value="Wingman">
-
-                        <input class="filterButton gamemodeFilter" id="csgodangerZoneButton" type="button" value="Danger Zone">
-
-                        <input class="filterButton gamemodeFilter" id="csgocasualButton" type="button" value="Casual">
-
-                        <input class="filterButton gamemodeFilter" id="csgooperationsButton" type="button" value="Operations">
-                    </div>
-                    <div id="subGamemodeFilters2"></div>
-                    <div id="rankFilters2">
-                        <div class="rankFilter checkBoxButton" id="csgoRank0Button">Silver I</div>
-
-                        <div class="rankFilter checkBoxButton" id="csgoRank1Button">Silver II</div>
-
-                        <div class="rankFilter checkBoxButton" id="csgoRank2Button">Silver III</div>
-
-                        <div class="rankFilter checkBoxButton" id="csgoRank3Button">Silver IV</div>
-
-                        <div class="rankFilter checkBoxButton" id="csgoRank4Button">Silver Elite</div>
-
-                        <div class="rankFilter checkBoxButton" id="csgoRank5Button">Silver Elite Master</div>
-
-                        <div class="rankFilter checkBoxButton" id="csgoRank6Button">Gold Nova I</div>
-
-                        <div class="rankFilter checkBoxButton" id="csgoRank7Button">Gold Nova II</div>
-
-                        <div class="rankFilter checkBoxButton" id="csgoRank8Button">Gold Nova III</div>
-
-                        <div class="rankFilter checkBoxButton" id="csgoRank9Button">Gold Nova Master</div>
-
-                        <div class="rankFilter checkBoxButton" id="csgoRank10Button">Master Guardian I</div>
-
-                        <div class="rankFilter checkBoxButton" id="csgoRank11Button">Master Guardian II</div>
-
-                        <div class="rankFilter checkBoxButton" id="csgoRank12Button">Master Guardian Elite</div>
-
-                        <div class="rankFilter checkBoxButton" id="csgoRank13Button">Distinguished Master Guardian</div>
-
-                        <div class="rankFilter checkBoxButton" id="csgoRank14Button">Legendary Eagle</div>
-
-                        <div class="rankFilter checkBoxButton" id="csgoRank15Button">Legendary Eagle Master</div>
-
-                        <div class="rankFilter checkBoxButton" id="csgoRank16Button">Supreme Master First Class</div>
-
-                        <div class="rankFilter checkBoxButton" id="csgoRank17Button">The Global Elite</div>
-                    </div>
-                    <div id="numericalRankFilters2"></div>
-                    <div id="teamSizeFilters2">
-                        <input type="range" min="2" max="5" value="5" class="teamSizeSlider teamSizeFilter" id="teamSizeSlider">
-                        <input type="number" name="Team size" min="2" max="5" value="5" class="teamSizeFilter" id="teamSizeSliderValue">
-                    </div>
-                    <div id="submitFilters2">
-                        <input class="submitFiltersButton filterButton" id="submitFilters2" type="button" value="Submit">
-                        <input class="resetFiltersButton filterButton" id="resetFilters" type="button" value="Reset filters">
-                    </div>
+        <div class="groups-filters-container" id="groupsFiltersContainer">
+            <div class="filter-row">
+                <div class="gameIcon">
+                    <img class="icon-hidden" src="img/csgo_c.png" alt="Counter-Strike: Global OffensiveSelectedIcon" style="height: 60px;">
+                    <img class="icon-visible" src="img/csgo_gs.png" alt="Counter-Strike: Global OffensiveIcon" style="height: 60px;">
+                </div>
+                <div class="gameIcon">
+                    <img class="icon-hidden" src="img/csgo_c.png" alt="Counter-Strike: Global OffensiveSelectedIcon" style="height: 60px;">
+                    <img class="icon-visible" src="img/csgo_gs.png" alt="Counter-Strike: Global OffensiveIcon" style="height: 60px;">
+                </div>
+                <div class="gameIcon">
+                    <img class="icon-hidden" src="img/csgo_c.png" alt="Counter-Strike: Global OffensiveSelectedIcon" style="height: 60px;">
+                    <img class="icon-visible" src="img/csgo_gs.png" alt="Counter-Strike: Global OffensiveIcon" style="height: 60px;">
+                </div>
+            </div>
+            <div class="filter-row">
+                <input class="filterButton gamemodeFilter" id="csgocompButton" type="button" value="Competetive">
+                <input class="filterButton gamemodeFilter" id="csgowingmanButton" type="button" value="Wingman">
+                <input class="filterButton gamemodeFilter" id="csgodangerZoneButton" type="button" value="Danger Zone">
+                <input class="filterButton gamemodeFilter" id="csgocasualButton" type="button" value="Casual">
+                <input class="filterButton gamemodeFilter" id="csgooperationsButton" type="button" value="Operations">
+            </div>
+            <div>Vali oma "rank"</div>
+            <div class="filter-row">
+                <div class="rank-filter-column">
+                    <div class="rankFilter checkBoxButton" id="csgoRank0Button">Silver I</div>
+                    <div class="rankFilter checkBoxButton" id="csgoRank1Button">Silver II</div>
+                    <div class="rankFilter checkBoxButton" id="csgoRank2Button">Silver III</div>
+                    <div class="rankFilter checkBoxButton" id="csgoRank3Button">Silver IV</div>
+                    <div class="rankFilter checkBoxButton" id="csgoRank4Button">Silver Elite</div>
+                    <div class="rankFilter checkBoxButton" id="csgoRank5Button">Silver Elite Master</div>
+                </div>
+                <div class="rank-filter-column">
+                    <div class="rankFilter checkBoxButton" id="csgoRank6Button">Gold Nova I</div>
+                    <div class="rankFilter checkBoxButton" id="csgoRank7Button">Gold Nova II</div>
+                    <div class="rankFilter checkBoxButton" id="csgoRank8Button">Gold Nova III</div>
+                    <div class="rankFilter checkBoxButton" id="csgoRank9Button">Gold Nova Master</div>
+                    <div class="rankFilter checkBoxButton" id="csgoRank10Button">Master Guardian I</div>
+                    <div class="rankFilter checkBoxButton" id="csgoRank11Button">Master Guardian II</div>
+                </div>
+                <div class="rank-filter-column">
+                    <div class="rankFilter checkBoxButton" id="csgoRank12Button">Master Guardian Elite</div>
+                    <div class="rankFilter checkBoxButton" id="csgoRank13Button">Distinguished Master Guardian</div>
+                    <div class="rankFilter checkBoxButton" id="csgoRank14Button">Legendary Eagle</div>
+                    <div class="rankFilter checkBoxButton" id="csgoRank15Button">Legendary Eagle Master</div>
+                    <div class="rankFilter checkBoxButton" id="csgoRank16Button">Supreme Master First Class</div>
+                    <div class="rankFilter checkBoxButton" id="csgoRank17Button">The Global Elite</div>
+                </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<div class="modal" id="addGame">
+<div class="modal" id="addGroupModal">
     <div class="modal-inside">
         <div class="buttonsContainer" id="gameButtonsContainer"></div>
         <div id="boardGameFilters"></div>

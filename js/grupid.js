@@ -16,8 +16,9 @@ $(function() {
         }, false);
     });
 
+    // Toggles the add group modal
     function addNewGroup() {
-        let modal = document.getElementById("addGame").classList.toggle("visible");
+        let modal = document.getElementById("addGroupModal").classList.toggle("visible");
     }
 
     function readGameConfig() {
@@ -106,6 +107,13 @@ $(function() {
         parent.innerHTML = html;
     }
 
+    function createListFilters() {
+        // Find parent
+        let parent = document.getElementById("groupsFiltersContainer");
+
+
+    }
+
     function createGameButtons(data) {
         // Find the parent for the game buttons
         parent = document.getElementById("gameButtonsContainer")
@@ -114,7 +122,7 @@ $(function() {
         let html = "";
         data.videoGames.forEach(game => {
             html += `
-                <div class="gameFilter" id=\"${game.id + "Button"}\" type=\"button\" value=\"${game.name}">
+                <div class="gameFilter" id=\"${game.id + "Button"}\">
                     <img class="icon-hidden" src="${game.selIconPath}" alt="${game.name + "SelectedIcon"}" style="height: 60px;"/>
                     <img class="icon-visible" src="${game.iconPath}" alt="${game.name + "Icon"}" style="height: 60px;"/>
                 </div>
