@@ -536,4 +536,4 @@ $(function() {
         url = url.substring(0, to);
         return url;
     }
-}
+});
