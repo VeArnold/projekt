@@ -198,12 +198,13 @@ a {
     border: 1px solid darkorange;
     box-shadow: 10px 10px 60px #555;
     display: inline-block;
-    height: auto;
     min-height: 100px;
     vertical-align: middle;
     width: 70%;
+    height: 80%;
     position: relative;
     padding: 15px 5%;
+    overflow: scroll;
 }
 
 /* Filtrid */
