@@ -3,6 +3,8 @@
     {
       "name": "Counter-Strike: Global Offensive",
       "id": "csgo",
+      "iconPath": "img/csgo_gs.png",
+      "selIconPath": "img/csgo_c.png",
       "ranks": [
         "Silver I",
         "Silver II",
@@ -55,6 +57,8 @@
     {
       "name": "Minecraft",
       "id": "minecraft",
+      "iconPath": "img/minecraft_gs.png",
+      "selIconPath": "img/minecraft_c.png",
       "maxTeamSize": 30,
       "ranks": [],
       "numericalRanks": false,
@@ -80,6 +84,8 @@
     {
       "name": "Crusader Kings 2",
       "id": "ck2",
+      "iconPath": "img/crusader_kings_gs.png",
+      "selIconPath": "img/crusader_kings_c.png",
       "maxTeamSize": 12,
       "ranks": [],
       "numericalRanks": false,
@@ -89,6 +95,8 @@
     {
       "name": "League of Legends",
       "id": "lol",
+      "iconPath": "img/lol_gs.png",
+      "selIconPath": "img/lol_c.png",
       "maxTeamSize": 5,
       "ranks": [
         "Iron IV",
@@ -208,24 +216,32 @@
     {
       "name": "Euroopa mälumäng",
       "id": "euroopa",
+      "iconPath": "img/euroopa_gs.png",
+      "selIconPath": "img/euroopa_c.png",
       "minTeamSize": 2,
       "maxTeamSize": 6
     },
     {
       "name": "Risk",
       "id": "risk",
+      "iconPath": "img/risk_gs.png",
+      "selIconPath": "img/risk_c.png",
       "minTeamSize": 2,
       "maxTeamSize": 6
     },
     {
       "name": "Exploding kittens",
       "id": "explodingKittens",
+      "iconPath": "img/explodingkittens_gs.png",
+      "selIconPath": "img/explodingkittens_c.png",
       "minTeamSize": 2,
       "maxTeamSize": 9
     },
     {
       "name": "Monopoly",
       "id": "monopoly",
+      "iconPath": "img/monopoly_gs.png",
+      "selIconPath": "img/monopoly_c.png",
       "minTeamSize": 2,
       "maxTeamSize": 8
     }

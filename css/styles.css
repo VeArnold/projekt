@@ -240,6 +240,17 @@ a {
     color: white;
 }
 
+.icon {
+    display: flex;
+    flex-direction: column;
+    height: 60px;
+    width: auto;
+}
+
+.icon-hidden {
+    display: none;
+}
+
 /* Gruppide list */
 .groups {
     display: flex;

@@ -114,11 +114,14 @@ $(function() {
         let html = "";
         data.videoGames.forEach(game => {
             html += `
-            <input class="filterButton gameFilter" id=\"${game.id + "Button"}\" type=\"button\" value=\"${game.name}"/>
+                <div class="gameFilter" id=\"${game.id + "Button"}\" type=\"button\" value=\"${game.name}">
+                    <img class="icon-hidden" src="${game.selIconPath}" alt="${game.name + "SelectedIcon"}" style="height: 60px;"/>
+                    <img class="icon-visible" src="${game.iconPath}" alt="${game.name + "Icon"}" style="height: 60px;"/>
+                </div>
                 `;
         });
         html += `
-            <input class="filterButton gameFilter" id=\"boardGamesButton\" type=\"button\" value=\"Lauamängud"/>
+            <div class="filterButton gameFilter" id=\"boardGamesButton\" type=\"button\" value=\"Lauamängud"/>
                 `;
 
         // Populate the parent with the new HTML
