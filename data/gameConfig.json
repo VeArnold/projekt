@@ -1,0 +1,233 @@
+{
+  "videoGames": [
+    {
+      "name": "Counter-Strike: Global Offensive",
+      "id": "csgo",
+      "ranks": [
+        "Silver I",
+        "Silver II",
+        "Silver III",
+        "Silver IV",
+        "Silver Elite",
+        "Silver Elite Master",
+        "Gold Nova I",
+        "Gold Nova II",
+        "Gold Nova III",
+        "Gold Nova Master",
+        "Master Guardian I",
+        "Master Guardian II",
+        "Master Guardian Elite",
+        "Distinguished Master Guardian",
+        "Legendary Eagle",
+        "Legendary Eagle Master",
+        "Supreme Master First Class",
+        "The Global Elite"],
+      "multiselectRanks": true,
+      "numericalRanks": false,
+      "gamemodes": [
+        {
+          "name": "Competetive",
+          "id": "comp",
+          "maxTeamSize": 5
+        },
+        {
+          "name": "Wingman",
+          "id": "wingman",
+          "maxTeamSize": 2
+        },
+        {
+          "name": "Danger Zone",
+          "id": "dangerZone",
+          "maxTeamSize": 3
+        },
+        {
+          "name": "Casual",
+          "id": "casual",
+          "maxTeamSize": 10
+        },
+        {
+          "name": "Operations",
+          "id": "operations",
+          "maxTeamSize": 2
+        }
+      ]  
+    },
+    {
+      "name": "Minecraft",
+      "id": "minecraft",
+      "maxTeamSize": 30,
+      "ranks": [],
+      "numericalRanks": false,
+      "teamTypes": [],
+      "gamemodes": [
+        {
+          "name": "Online",
+          "id": "online",
+          "maxTeamSize": 30
+        },
+        {
+          "name": "LAN",
+          "id": "lan",
+          "maxTeamSize": 30
+        },
+        {
+          "name": "Realms",
+          "id": "realms",
+          "maxTeamSize": 30
+        }
+      ]
+    },
+    {
+      "name": "Crusader Kings 2",
+      "id": "ck2",
+      "maxTeamSize": 12,
+      "ranks": [],
+      "numericalRanks": false,
+      "teamTypes": [],
+      "gamemodes": []
+    },
+    {
+      "name": "League of Legends",
+      "id": "lol",
+      "maxTeamSize": 5,
+      "ranks": [
+        "Iron IV",
+        "Iron III",
+        "Iron II",
+        "Iron I",
+        "Bronze IV",
+        "Bronze III",
+        "Bronze II",
+        "Bronze I",
+        "Silver IV",
+        "Silver III",
+        "Silver II",
+        "Silver I",
+        "Gold IV",
+        "Gold III",
+        "Gold II",
+        "Gold I",
+        "Platinum IV",
+        "Platinum III",
+        "Platinum II",
+        "Platinum I",
+        "Diamond IV",
+        "Diamond III",
+        "Diamond II",
+        "Diamond I",
+        "Master",
+        "Grandmaster",
+        "Challenger"
+      ],
+      "multiselectRanks": true,
+      "numericalRanks": false,
+      "gamemodes": [
+        {
+          "name": "Summoner's Rift",
+          "id": "summonersRift",
+          "maxTeamSize": 5,
+          "subGamemodes": [
+            {
+              "name": "Co-op Vs. AI",
+              "id": "coop"
+            },
+            {
+              "name": "Normal matchmaking",
+              "id": "normalMM"
+            },
+            {
+              "name": "Ranked matchmaking",
+              "id": "rankedMM"
+            },
+            {
+              "name": "Custom games",
+              "id": "custom"
+            }
+          ]
+        },
+        {
+          "name": "Twisted Treeline",
+          "id": "twistedTreeline",
+          "maxTeamSize": 3,
+          "subGamemodes": [
+            {
+              "name": "Co-op Vs. AI",
+              "id": "coop"
+            },
+            {
+              "name": "Normal matchmaking",
+              "id": "normalMM"
+            },
+            {
+              "name": "Ranked matchmaking",
+              "id": "rankedMM"
+            },
+            {
+              "name": "Custom games",
+              "id": "custom"
+            }
+          ]
+        },
+        {
+          "name": "Howling Abyss",
+          "id": "howlingAbyss",
+          "maxTeamSize": 5,
+          "subGamemodes": [
+            {
+              "name": "Co-op Vs. AI",
+              "id": "coop"
+            },
+            {
+              "name": "Normal matchmaking",
+              "id": "normalMM"
+            },
+            {
+              "name": "Ranked matchmaking",
+              "id": "rankedMM"
+            },
+            {
+              "name": "Custom games",
+              "id": "custom"
+            }
+          ]
+        },
+        {
+          "name": "Teamfight Tactics",
+          "id": "teamfightTactics",
+          "maxTeamSize": 3
+        },
+        {
+          "name": "Featured Gamemodes",
+          "id": "featuredGamemodes",
+          "maxTeamSize": 5
+        }
+      ]
+    }
+  ],
+  "boardGames": [
+    {
+      "name": "Euroopa mälumäng",
+      "id": "euroopa",
+      "minTeamSize": 2,
+      "maxTeamSize": 6
+    },
+    {
+      "name": "Risk",
+      "id": "risk",
+      "minTeamSize": 2,
+      "maxTeamSize": 6
+    },
+    {
+      "name": "Exploding kittens",
+      "id": "explodingKittens",
+      "minTeamSize": 2,
+      "maxTeamSize": 9
+    },
+    {
+      "name": "Monopoly",
+      "id": "monopoly",
+      "minTeamSize": 2,
+      "maxTeamSize": 8
+    }
+  ]
+}
