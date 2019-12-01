@@ -20,6 +20,13 @@ $(function() {
             unclickOtherButtons("game-select");
             addNewGroup();
         }, false);
+
+        let deleteGroupFilters = document.getElementById("groups-filters-reset-button");
+        deleteGroupFilters.addEventListener("click", function () {
+            removeUnneccessaryFilters(true, true, true, true, true, true);
+            unclickOtherButtons("game-select");
+            filterGroupsList(null, null, null, null, null);
+        }, false);
     });
 
     // Toggles the add group modal
@@ -623,7 +630,6 @@ $(function() {
                 `
         });
         return html;
-
     }
 
     function createSubmitButton() {
@@ -772,6 +778,13 @@ $(function() {
                         }
                     }
                 }
+            }
+        }
+        if (game == null && gamemode == null && subGamemode == null && rank == null && boardGame == null) {
+            // Find all hidden rows
+            let listEntries = document.getElementsByClassName(listItemHidden);
+            for (let i = listEntries.length - 1; i >= 0; i--) {
+                listEntries[i].classList.remove(listItemHidden);
             }
         }
     }
