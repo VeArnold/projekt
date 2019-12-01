@@ -83,8 +83,7 @@
 }
 
 .filter-container {
-    margin-left: 30%;
-    margin-right: 60%;
+    justify-content: center;
 }
 
 .buttons-container::-webkit-scrollbar {
@@ -324,7 +323,6 @@
 .group-request-item-data {
     display: flex;
     flex-direction: column;
-    padding: 0.3rem 0.8rem 0.3rem;
     width: 100%;
     text-align: center;
 }
