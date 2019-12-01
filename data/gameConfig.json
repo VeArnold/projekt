@@ -24,6 +24,7 @@
         "Legendary Eagle Master",
         "Supreme Master First Class",
         "The Global Elite"],
+      "ranksPerColumn": 6,
       "multiselectRanks": true,
       "numericalRanks": false,
       "gamemodes": [
@@ -127,6 +128,7 @@
         "Grandmaster",
         "Challenger"
       ],
+      "ranksPerColumn": 4,
       "multiselectRanks": true,
       "numericalRanks": false,
       "gamemodes": [

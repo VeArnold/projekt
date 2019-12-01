@@ -122,14 +122,12 @@ $(function() {
         let html = "";
         data.videoGames.forEach(game => {
             html += `
-                <div class="gameFilter" id=\"${game.id + "Button"}\">
-                    <img class="icon-hidden" src="${game.selIconPath}" alt="${game.name + "SelectedIcon"}" style="height: 60px;"/>
-                    <img class="icon-visible" src="${game.iconPath}" alt="${game.name + "Icon"}" style="height: 60px;"/>
+                <div class="game-button gameFilter" id=\"${game.id + "Button"}\">
                 </div>
                 `;
         });
         html += `
-            <div class="filterButton gameFilter" id=\"boardGamesButton\" type=\"button\" value=\"Lauamängud"/>
+            <div class="game-button gameFilter" id=\"boardGamesButton\"></div>
                 `;
 
         // Populate the parent with the new HTML
@@ -142,7 +140,7 @@ $(function() {
             if (game.gamemodes.length > 0) {
                 button.addEventListener("click", function () {
                     selectedGame = game.id;
-                    buttonClicked(button, "gameFilter");
+                    imageButtonClicked(button, "gameFilter");
                     createGamemodeFilter(game);
                 }, false);
             }
@@ -155,7 +153,7 @@ $(function() {
                         removeUnneccessaryFilters(true, true, true, true, true);
 
                         selectedGame = game.id;
-                        buttonClicked(button, "gameFilter");
+                        imageButtonClicked(button, "gameFilter");
                         createRankFilter(game);
                     }, false);
                 } else {
@@ -165,7 +163,7 @@ $(function() {
                         removeUnneccessaryFilters(true, true, true, true, true);
 
                         selectedGame = game.id;
-                        buttonClicked(button, "gameFilter");
+                        imageButtonClicked(button, "gameFilter");
                         createTeamSizeFilter(game);
                     }, false);
                 }
@@ -176,7 +174,7 @@ $(function() {
         let button = document.getElementById("boardGamesButton");
         button.addEventListener("click", function () {
             selectedGame = "boardGame";
-            buttonClicked(button, "gameFilter");
+            imageButtonClicked(button, "gameFilter");
             createBoardGameList(data.boardGames);
         }, false);
     }
@@ -241,10 +239,18 @@ $(function() {
         // Create HTML with buttons
         let html = "";
         let i = 0;
+
+        let rowsPerColumn = game.ranksPerColumn != null && game.ranksPerColumn !== 0 ? game.ranksPerColumn : game.ranks.length;
         game.ranks.forEach(rank => {
+            if (i % rowsPerColumn === 0) {
+                html += `<div class="rank-col">`
+            }
             html += `
                 <div class="rankFilter checkBoxButton" id=\"${game.id + "Rank" + i.toString() + "Button"}\">${rank}</div>
             `;
+            if (i % rowsPerColumn === rowsPerColumn - 1) {
+                html += `</div>`
+            }
             i++;
         });
         parent.innerHTML = html;
@@ -254,6 +260,7 @@ $(function() {
         game.ranks.forEach(rank => {
             let rankButton = document.getElementById(game.id + "Rank" + i.toString() + "Button");
             rankButton.addEventListener("click", function () {
+                console.log("Works");
                 addOrRemoveRank(rank, rankButton);
             });
             i++;
@@ -302,7 +309,7 @@ $(function() {
         // Create HTML with slider and append to parent
         let html = `
             <input type="range" min="${minTeamSize}" max="${maxTeamSize}" value="${maxTeamSize}" class="teamSizeSlider teamSizeFilter" id="teamSizeSlider"/>
-            <input type="number" name="Team size" min="${minTeamSize}" max="${maxTeamSize}" value="${maxTeamSize}" class="teamSizeFilter" id="teamSizeSliderValue"/>
+            <input type="number" name="Team size" min="${minTeamSize}" max="${maxTeamSize}" value="${maxTeamSize}" class="team-size-box teamSizeFilter" id="teamSizeSliderValue"/>
         `;
 
         parent.innerHTML = html;
@@ -375,7 +382,7 @@ $(function() {
         let html = "";
         boardGames.forEach(boardGame => {
             html += `
-                <input class="boardGameFilter filterButton" id="${boardGame.id + "Button"}" type="button" value="${boardGame.name}"/>
+                <div class="game-button boardGameFilter" id="${boardGame.id + "Button"}"></div>
                 `
         });
 
@@ -387,7 +394,7 @@ $(function() {
             let button = document.getElementById(boardGame.id + "Button");
             button.addEventListener("click", function () {
                 selectedBoardGame = boardGame.id;
-                buttonClicked(button, "boardGameFilter");
+                imageButtonClicked(button, "boardGameFilter");
                 createTeamSizeFilter(boardGame);
             })
         })
@@ -459,7 +466,7 @@ $(function() {
 
     // Function to add or remove selected ranks from global list
     function addOrRemoveRank(rank, button) {
-        button.classList.toggle("selectedButton");
+        button.classList.toggle("selected-filter-button");
         if (selectedRanks.has(rank)) {
             selectedRanks.delete(rank);
         } else {
@@ -467,9 +474,14 @@ $(function() {
         }
     }
 
-    function buttonClicked(button, classname) {
+    function imageButtonClicked(button, classname) {
         unclickOtherButtons(classname);
         button.classList.toggle("selectedButton");
+    }
+
+    function buttonClicked(button, classname) {
+        unclickOtherButtons(classname);
+        button.classList.toggle("selected-filter-button");
     }
 
     function unclickOtherButtons(classname) {
@@ -510,13 +522,6 @@ $(function() {
             filters[i].parentElement.removeChild(filters[i]);
         }
     }
-
-    $(function () {
-        $(".user-menu").click(function () {
-            $("#dimmer").fadeToggle();
-            $(".sidebar-user").animate({width: 'toggle'}, 350);
-        });
-    });
 
     function readGameConfigFile(file) {
         // Fetches the gameConfig file data and creates form
