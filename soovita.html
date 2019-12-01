@@ -7,6 +7,7 @@
     <title>Soovita mänge | UT Gaming</title>
 
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/soovita.css">
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 </head>
 
@@ -31,6 +32,24 @@
         <div class="sidebar-item">Logi välja</div>
     </div>
     <div class="page">
+        <div class="page-mainbox">
+            <h2>SOOVITA MÄNGE</h2>
+            <p>Siin lehel on võimalik soovitada mänge, mida võiksime lisada UT Gaming mängude nimekirja!</p>
+            <hr>
+            <form class="suggest-form">
+                <label for="game">Mängu nimi</label>
+                <input type="text" name="game" class="suggest-form-field">
+                <br><br>
+                <label for="desc">
+                    Kirjelda mängu detailsemalt.
+                    <br>
+                    Miks peaksime selle UT Gaming lehele lisama? Millised valikud peaksid mängul olema grupi loomisel?
+                </label>
+                <textarea name="desc" class="suggest-form-textarea"></textarea>
+                <br>
+                <input class="suggest-form-button" id="submitFilters2" type="button" value="Saada">
+            </form>
+        </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>

@@ -41,10 +41,42 @@ a {
     color: #F0F1ED;
 }
 
-@-ms-keyframes scroll{
-    100%{
-        background-position:0px -3000px;
-    }
+hr {
+    border: none;
+    border-bottom: 2px solid #505050;
+}
+
+input[type="text"] {
+    border: 1px solid darkorange;
+    padding: 0.5rem;
+    color: darkorange;
+    background: #333;
+    margin: 0.2rem;
+    font-family: "play";
+}
+
+textarea {
+    border: 1px solid darkorange;
+    padding: 0.5rem;
+    color: darkorange;
+    background: #333;
+    margin: 0.2rem;
+    font-family: "play";
+}
+
+input[type="button"] {
+    cursor: pointer;
+    border: 1px solid darkorange;
+    padding: 0.5rem;
+    color: darkorange;
+    background: #333;
+    margin: 0.2rem;
+    font-family: "play";
+}
+
+input[type="button"]:hover {
+    background: #573a39;
+    color: white;
 }
 
 @keyframes scroll{
@@ -349,16 +381,7 @@ a {
     background-image: url(../img/lauamängud_c.png);
 }
 
-.filterButton {
-    cursor: pointer;
-    border: 1px solid darkorange;
-    padding: 0.5rem;
-    color: darkorange;
-    background: #333;
-    margin: 0.2rem;
-}
-
-.filterButton:hover, .selected-filter-button {
+.selected-filter-button {
     background: #573a39;
     color: white;
 }
