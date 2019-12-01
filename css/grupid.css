@@ -91,7 +91,8 @@
 }
 
 .filter-container {
-    justify-content: center;
+    margin-left: 30%;
+    margin-right: 60%;
 }
 
 .buttons-container::-webkit-scrollbar {
@@ -265,7 +266,7 @@
 .rank-col {
     display: inline-flex;
     flex-direction: column;
-    width: 32%;
+    width: 33%;
     margin-top: 0.2rem;
 }
 
@@ -349,9 +350,14 @@
 /* List filters */
 .filter-row {
     display: flex;
+    flex-direction: column;
+    overflow: auto;
+    margin: 0;
+}
+
+.filter-row.buttons-container,
+#groups-filters-ranks-container.filter-row {
     flex-direction: row;
-    width: 80%;
-    overflow: scroll;
 }
 
 .rank-filter-column {
@@ -365,10 +371,15 @@
     }
 
     .groups-list-container {
-        width: 100%;
+        width: 90%;
     }
 
     .groups-filters-container {
-        width: 100%;
+        width: 90%;
+    }
+
+    .filter-container {
+        margin: 0;
+        justify-content: center;
     }
 }
