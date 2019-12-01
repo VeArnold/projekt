@@ -392,11 +392,11 @@ input[type="button"]:hover {
     cursor: pointer;
 }
 
-.game-button:hover, .selectedButton {
+.game-button:hover, .selected-button {
     border-bottom: 3px solid #743c3d;
 }
 
-#csgoButton, #minecraftButton, #ck2Button, #lolButton, #boardGamesButton, #riskButton, #explodingKittensButton, #monopolyButton, #euroopaButton {
+#csgoButton, #minecraftButton, #ck2Button, #lolButton, #board-games-button, #riskButton, #explodingKittensButton, #monopolyButton, #euroopaButton {
     background-repeat: no-repeat;
     background-size: 180px 60px;
 }
@@ -404,31 +404,31 @@ input[type="button"]:hover {
 #csgoButton {
     background-image: url(../img/csgo_gs.png);
 }
-#csgoButton:hover, #csgoButton.selectedButton {
+#csgoButton:hover, #csgoButton.selected-button {
     background-image: url(../img/csgo_c.png);
 }
 #minecraftButton {
     background-image: url(../img/minecraft_gs.png);
 }
-#minecraftButton:hover, #minecraftButton.selectedButton {
+#minecraftButton:hover, #minecraftButton.selected-button {
     background-image: url(../img/minecraft_c.png);
 }
 #ck2Button {
     background-image: url(../img/crusader_kings_gs.png);
 }
-#ck2Button:hover, #ck2Button.selectedButton {
+#ck2Button:hover, #ck2Button.selected-button {
     background-image: url(../img/crusader_kings_c.png);
 }
 #lolButton {
     background-image: url(../img/lol_gs.png);
 }
-#lolButton:hover, #lolButton.selectedButton {
+#lolButton:hover, #lolButton.selected-button {
     background-image: url(../img/lol_c.png);
 }
-#boardGamesButton {
+#board-games-button {
     background-image: url(../img/lauamängud_gs.png);
 }
-#boardGamesButton:hover, #boardGamesButton.selectedButton {
+#board-games-button:hover, #board-games-button.selected-button {
     background-image: url(../img/lauamängud_c.png);
 }
 
@@ -436,7 +436,7 @@ input[type="button"]:hover {
     background-image: url(../img/risk_gs.png);
 }
 
-#riskButton:hover, #riskButton.selectedButton {
+#riskButton:hover, #riskButton.selected-button {
     background-image: url(../img/risk_c.png);
 }
 
@@ -444,7 +444,7 @@ input[type="button"]:hover {
     background-image: url(../img/monopoly_gs.png);
 }
 
-#monopolyButton:hover, #monopolyButton.selectedButton {
+#monopolyButton:hover, #monopolyButton.selected-button {
     background-image: url(../img/monopoly_c.png);
 }
 
@@ -452,7 +452,7 @@ input[type="button"]:hover {
     background-image: url(../img/explodingkittens_gs.png);
 }
 
-#explodingKittensButton:hover, #explodingKittensButton.selectedButton {
+#explodingKittensButton:hover, #explodingKittensButton.selected-button {
     background-image: url(../img/explodingkittens_c.png);
 }
 
@@ -460,11 +460,11 @@ input[type="button"]:hover {
     background-image: url(../img/euroopa_gs.png);
 }
 
-#euroopaButton:hover, #euroopaButton.selectedButton {
+#euroopaButton:hover, #euroopaButton.selected-button {
     background-image: url(../img/euroopa_c.png);
 }
 
-.filterButton {
+.filter-button {
     cursor: pointer;
     border: 1px solid darkorange;
     padding: 0.5rem;
@@ -473,7 +473,7 @@ input[type="button"]:hover {
     margin: 0.2rem;
 }
 
-.filterButton:hover, .selected-filter-button {
+.filter-button:hover, .selected-filter-button {
     background: #573a39;
     color: white;
 }
@@ -483,7 +483,7 @@ input[type="button"]:hover {
     margin-bottom: 5px;
 }
 
-.teamSizeSlider {
+.team-size-slider {
     -webkit-appearance: none;
     appearance: none;
     height: 22px;
@@ -492,7 +492,7 @@ input[type="button"]:hover {
     outline: none;
     margin-top: 8px;
 }
-.teamSizeSlider::-webkit-slider-thumb {
+.team-size-slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
     width: 15px;
@@ -500,7 +500,7 @@ input[type="button"]:hover {
     background: #573a39;
     cursor: pointer;
 }
-.teamSizeSlider::-moz-range-thumb {
+.team-size-slider::-moz-range-thumb {
     width: 15px;
     height: 22px;
     background: #573a39;
@@ -538,7 +538,7 @@ input[type="button"]:hover {
     text-overflow: ellipsis;
 }
 
-.checkBoxButton {
+.check-box-button {
     border: 1px solid #743c3d;
     padding: 0.5rem;
     color: white;

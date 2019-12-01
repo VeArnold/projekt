@@ -33,7 +33,7 @@
     </div>
     <div class="page">
         <div class="buttons-container">
-            <button class="filterButton" id="addNewGroup">Lisa uus grupp</button>
+            <button class="filter-button" id="add-new-group-request-button">Lisa uus grupp</button>
         </div>
 
         <div class="groups">
@@ -41,7 +41,7 @@
 
             </div>
             <div class="groups-filters-container" id="groupsFiltersContainer">
-                <div class="filter-row">
+                <div class="filter-row ">
                     <div class="gameIcon">
                         <img class="icon-hidden" src="img/csgo_c.png" alt="Counter-Strike: Global OffensiveSelectedIcon" style="height: 60px;">
                         <img class="icon-visible" src="img/csgo_gs.png" alt="Counter-Strike: Global OffensiveIcon" style="height: 60px;">
@@ -56,11 +56,11 @@
                     </div>
                 </div>
                 <div class="filter-row">
-                    <input class="filterButton gamemodeFilter" id="csgocompButton" type="button" value="Competetive">
-                    <input class="filterButton gamemodeFilter" id="csgowingmanButton" type="button" value="Wingman">
-                    <input class="filterButton gamemodeFilter" id="csgodangerZoneButton" type="button" value="Danger Zone">
-                    <input class="filterButton gamemodeFilter" id="csgocasualButton" type="button" value="Casual">
-                    <input class="filterButton gamemodeFilter" id="csgooperationsButton" type="button" value="Operations">
+                    <input class="filter-button gamemodeFilter" id="csgocompButton" type="button" value="Competetive">
+                    <input class="filter-button gamemodeFilter" id="csgowingmanButton" type="button" value="Wingman">
+                    <input class="filter-button gamemodeFilter" id="csgodangerZoneButton" type="button" value="Danger Zone">
+                    <input class="filter-button gamemodeFilter" id="csgocasualButton" type="button" value="Casual">
+                    <input class="filter-button gamemodeFilter" id="csgooperationsButton" type="button" value="Operations">
                 </div>
                 <div>Vali oma "rank"</div>
                 <div class="filter-row">
@@ -92,24 +92,24 @@
             </div>
         </div>
     </div>
-    <div class="modal" id="addGroupModal">
+    <div class="modal" id="add-new-group-request-modal">
         <div class="modal-header">
             <div class="modal-title">
                 <span>Lisa uus grupp</span>
             </div>
-            <div class="modal-close">
+            <div class="modal-close" id="add-new-group-modal-close">
                 <span>X</span>
             </div>
         </div>
         <div class="modal-inside">
-            <div class="buttons-container" id="gameButtonsContainer"></div>
-            <div class="buttons-container" id="boardGameFilters"></div>
-            <div id="gamemodeFilters"></div>
-            <div id="subGamemodeFilters"></div>
-            <div id="rankFilters"></div>
-            <div id="numericalRankFilters"></div>
-            <div id="teamSizeFilters"></div>
-            <div id="submitFilters"></div>
+            <div class="buttons-container" id="game-buttons-container"></div>
+            <div class="buttons-container" id="board-game-container"></div>
+            <div id="gamemodes-container"></div>
+            <div id="sub-gamemodes-container"></div>
+            <div id="ranks-container"></div>
+            <div id="numerical-ranks-container"></div>
+            <div id="team-size-selectors-container"></div>
+            <div id="footer-buttons-container"></div>
         </div>
     </div>
 

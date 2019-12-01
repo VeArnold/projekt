@@ -10,15 +10,21 @@ $(function() {
     window.addEventListener('load', function () {
         readGameConfig();
         readGroupsInfo();
-        let button = document.getElementById("addNewGroup");
-        button.addEventListener("click", function () {
+        let addNewGroupButton = document.getElementById("add-new-group-request-button");
+        addNewGroupButton.addEventListener("click", function () {
+            addNewGroup();
+        }, false);
+        let addGroupModalCloseButton = document.getElementById("add-new-group-modal-close");
+        addGroupModalCloseButton.addEventListener("click", function () {
+            removeUnneccessaryFilters(true, true, true, true, true);
+            unclickOtherButtons("game-select");
             addNewGroup();
         }, false);
     });
 
     // Toggles the add group modal
     function addNewGroup() {
-        let modal = document.getElementById("addGroupModal").classList.toggle("visible");
+        document.getElementById("add-new-group-request-modal").classList.toggle("visible");
     }
 
     function readGameConfig() {
@@ -98,7 +104,7 @@ $(function() {
                     <div class="groupRequestItemData">
                         ${gameData}
                     </div>
-                    <input class="filterButton" type="button" value="Join team"/>
+                    <input class="filter-button" type="button" value="Join team"/>
                 </div>
             `
 
@@ -114,20 +120,21 @@ $(function() {
 
     }
 
+    
     function createGameButtons(data) {
         // Find the parent for the game buttons
-        parent = document.getElementById("gameButtonsContainer")
+        parent = document.getElementById("game-buttons-container");
 
         // Generate the HTML for the buttons
         let html = "";
         data.videoGames.forEach(game => {
             html += `
-                <div class="game-button gameFilter" id=\"${game.id + "Button"}\">
+                <div class="game-button game-select" id=\"${game.id + "Button"}\">
                 </div>
                 `;
         });
         html += `
-            <div class="game-button gameFilter" id=\"boardGamesButton\"></div>
+            <div class="game-button game-select" id=\"board-games-button\"></div>
                 `;
 
         // Populate the parent with the new HTML
@@ -140,8 +147,8 @@ $(function() {
             if (game.gamemodes.length > 0) {
                 button.addEventListener("click", function () {
                     selectedGame = game.id;
-                    imageButtonClicked(button, "gameFilter");
-                    createGamemodeFilter(game);
+                    imageButtonClicked(button, "game-select");
+                    createGameModeSelectors(game);
                 }, false);
             }
             // Gamemodes don't exist, check if ranks exist
@@ -153,7 +160,7 @@ $(function() {
                         removeUnneccessaryFilters(true, true, true, true, true);
 
                         selectedGame = game.id;
-                        imageButtonClicked(button, "gameFilter");
+                        imageButtonClicked(button, "game-select");
                         createRankFilter(game);
                     }, false);
                 } else {
@@ -163,7 +170,7 @@ $(function() {
                         removeUnneccessaryFilters(true, true, true, true, true);
 
                         selectedGame = game.id;
-                        imageButtonClicked(button, "gameFilter");
+                        imageButtonClicked(button, "game-select");
                         createTeamSizeFilter(game);
                     }, false);
                 }
@@ -171,49 +178,52 @@ $(function() {
         });
 
         // Add listener also for board games
-        let button = document.getElementById("boardGamesButton");
+        let button = document.getElementById("board-games-button");
         button.addEventListener("click", function () {
             selectedGame = "boardGame";
-            imageButtonClicked(button, "gameFilter");
+            imageButtonClicked(button, "game-select");
             createBoardGameList(data.boardGames);
         }, false);
     }
 
-    function createGamemodeFilter(game) {
+    function createGameModeSelectors(game) {
         // Remove previously created gamemode and lower filters
         removeUnneccessaryFilters(gamemode = true, true, true, true, true);
 
         // Find parent
-        var parent = document.getElementById("gamemodeFilters");
+        var parent = document.getElementById("gamemodes-container");
 
         // Create HTML with buttons
         html = "";
         game.gamemodes.forEach(gamemode => {
             html += `
-                <input class="filterButton gamemodeFilter" id=\"${game.id + gamemode.id + "Button"}\" type=\"button\" value=\"${gamemode.name}"/>
+                <input class="filter-button gamemode-select" id=\"add-group-${game.id + "-" + gamemode.id + "-button"}\" type=\"button\" value=\"${gamemode.name}"/>
             `
         });
 
         // Append new HTML to parent
         parent.innerHTML = html;
-
         // Create eventlisteners
         game.gamemodes.forEach(gamemode => {
-            let button = document.getElementById(game.id + gamemode.id + "Button");
+            console.log(gamemode.name);
+            let button = document.getElementById("add-group-" + game.id + "-" + gamemode.id + "-button");
             // Subgamemodes don't exist
             if (gamemode.subGamemodes == null || gamemode.subGamemodes.length === 0) {
                 // Ranks exist
                 if ((game.ranks.length > 0) || (game.numericalRanks === true)) {
                     button.addEventListener("click", function () {
+                        console.log("Listener clicked");
                         selectedGamemode = gamemode.id;
-                        buttonClicked(button, "gamemodeFilter");
+                        console.log(selectedGamemode);
+                        buttonClicked(button, "gamemode-select");
                         createRankFilter(game);
                     }, false)
                 } else {
                     // Ranks don't exist
                     button.addEventListener("click", function () {
+                        console.log("Listener clicked");
                         selectedGamemode = gamemode.id;
-                        buttonClicked(button, "gamemodeFilter");
+                        buttonClicked(button, "gamemode-select");
                         createTeamSizeFilter(game);
                     }, false)
                 }
@@ -222,7 +232,7 @@ $(function() {
             else {
                 button.addEventListener("click", function () {
                     selectedGamemode = gamemode.id;
-                    buttonClicked(button, "gamemodeFilter");
+                    buttonClicked(button, "gamemode-select");
                     createSubGamemodeFilter(game, gamemode.subGamemodes);
                 }, false)
             }
@@ -230,11 +240,12 @@ $(function() {
     }
 
     function createRankFilter(game) {
+        console.log("Now we're here");
         // Remove previously created rank and lower filters
         removeUnneccessaryFilters(gamemode = false, subGamemode = false, rank = true, teamsize = true, true);
 
         // Find parent
-        let parent = document.getElementById("rankFilters");
+        let parent = document.getElementById("ranks-container");
 
         // Create HTML with buttons
         let html = "";
@@ -246,7 +257,7 @@ $(function() {
                 html += `<div class="rank-col">`
             }
             html += `
-                <div class="rankFilter checkBoxButton" id=\"${game.id + "Rank" + i.toString() + "Button"}\">${rank}</div>
+                <div class="rank-select check-box-button" id=\"${"add-group-rank" + game.id + i.toString() + "-button"}\">${rank}</div>
             `;
             if (i % rowsPerColumn === rowsPerColumn - 1) {
                 html += `</div>`
@@ -258,9 +269,8 @@ $(function() {
         // Add listeners for buttons to toggle state
         i = 0;
         game.ranks.forEach(rank => {
-            let rankButton = document.getElementById(game.id + "Rank" + i.toString() + "Button");
+            let rankButton = document.getElementById("add-group-rank" + game.id + i.toString() + "-button");
             rankButton.addEventListener("click", function () {
-                console.log("Works");
                 addOrRemoveRank(rank, rankButton);
             });
             i++;
@@ -280,7 +290,7 @@ $(function() {
         }
 
         // Find parent
-        let parent = document.getElementById("teamSizeFilters");
+        let parent = document.getElementById("team-size-selectors-container");
 
         // Determine min values of teamsize
         let minTeamSize = 2;
@@ -308,15 +318,15 @@ $(function() {
 
         // Create HTML with slider and append to parent
         let html = `
-            <input type="range" min="${minTeamSize}" max="${maxTeamSize}" value="${maxTeamSize}" class="teamSizeSlider teamSizeFilter" id="teamSizeSlider"/>
-            <input type="number" name="Team size" min="${minTeamSize}" max="${maxTeamSize}" value="${maxTeamSize}" class="team-size-box teamSizeFilter" id="teamSizeSliderValue"/>
+            <input type="range" min="${minTeamSize}" max="${maxTeamSize}" value="${maxTeamSize}" class="team-size-slider team-size-select" id="team-size-slider"/>
+            <input type="number" name="Team size" min="${minTeamSize}" max="${maxTeamSize}" value="${maxTeamSize}" class="team-size-box team-size-select" id="team-size-slider-value"/>
         `;
 
         parent.innerHTML = html;
 
         // OnValueChanged functions
-        let slider = document.getElementById("teamSizeSlider");
-        let textBox = document.getElementById("teamSizeSliderValue");
+        let slider = document.getElementById("team-size-slider");
+        let textBox = document.getElementById("team-size-slider-value");
 
         slider.addEventListener("input", function () {
             selectedTeamSize = slider.valueAsNumber;
@@ -339,13 +349,13 @@ $(function() {
         removeUnneccessaryFilters(false, true, true, true, true);
 
         // Find parent
-        let parent = document.getElementById("subGamemodeFilters");
+        let parent = document.getElementById("sub-gamemodes-container");
 
         // Create HTML with buttons
         let html = "";
         subGamemodes.forEach(subGamemode => {
             html += `
-                <input class="filterButton subGamemodeFilter" id=\"${game.id + gamemode.id + subGamemode.id + "Button"}\" type=\"button\" value=\"${subGamemode.name}"/>
+                <input class="filter-button sub-gamemode-select" id=\"${"add-group-game.id" + gamemode.id + subGamemode.id + "-button"}\" type=\"button\" value=\"${subGamemode.name}"/>
             `
         });
 
@@ -354,17 +364,17 @@ $(function() {
 
         // Create eventlisteners
         subGamemodes.forEach(subGamemode => {
-            let button = document.getElementById(game.id + gamemode.id + subGamemode.id + "Button")
+            let button = document.getElementById("add-group-game.id" + gamemode.id + subGamemode.id + "-button");
             if ((game.ranks.length > 0) || (game.numericalRanks === true)) {
                 button.addEventListener("click", function () {
                     selectedSubGamemode = subGamemode.id;
-                    buttonClicked(button, "subGamemodeFilter");
+                    buttonClicked(button, "sub-gamemode-select");
                     createRankFilter(game);
                 }, false)
             } else {
                 button.addEventListener("click", function () {
                     selectedSubGamemode = subGamemode.id;
-                    buttonClicked(button, "subGamemodeFilter");
+                    buttonClicked(button, "sub-gamemode-select");
                     createTeamSizeFilter(game);
                 }, false)
             }
@@ -376,13 +386,13 @@ $(function() {
         removeUnneccessaryFilters(true, true, true, true, true);
 
         // Find parent
-        let parent = document.getElementById("boardGameFilters");
+        let parent = document.getElementById("board-game-container");
 
         // Create the new HTML
         let html = "";
         boardGames.forEach(boardGame => {
             html += `
-                <div class="game-button boardGameFilter" id="${boardGame.id + "Button"}"></div>
+                <div class="game-button board-game-select" id="${boardGame.id + "Button"}"></div>
                 `
         });
 
@@ -394,7 +404,7 @@ $(function() {
             let button = document.getElementById(boardGame.id + "Button");
             button.addEventListener("click", function () {
                 selectedBoardGame = boardGame.id;
-                imageButtonClicked(button, "boardGameFilter");
+                imageButtonClicked(button, "board-game-select");
                 createTeamSizeFilter(boardGame);
             })
         })
@@ -402,26 +412,26 @@ $(function() {
 
     function createSubmitButton() {
         // Find parent
-        let parent = document.getElementById("submitFilters");
+        let parent = document.getElementById("footer-buttons-container");
 
         // Create the html for the button
         let html = `
-                <input class="submitFiltersButton filterButton" id="submitFilters" type="button" value="Submit"/>
-                <input class="resetFiltersButton filterButton" id="resetFilters" type="button" value="Reset filters"/>
+                <input class="submit-group-button filter-button" id="submit-game-request" type="button" value="Submit"/>
+                <input class="reset-selections-button filter-button" id="reset-add-game-selections" type="button" value="Reset filters"/>
         `;
 
         parent.innerHTML = html;
 
         // Add eventlisteners
-        let submitButton = document.getElementById("submitFilters");
+        let submitButton = document.getElementById("submit-game-request");
         submitButton.addEventListener("click", function () {
             submitForm();
         });
 
-        let resetButton = document.getElementById("resetFilters");
+        let resetButton = document.getElementById("reset-add-game-selections");
         resetButton.addEventListener("click", function () {
             removeUnneccessaryFilters(true, true, true, true, true);
-            unclickOtherButtons("gameFilter")
+            unclickOtherButtons("game-select")
             // TODO: Remove game filter as well
         })
     }
@@ -454,6 +464,8 @@ $(function() {
             let groupsList = JSON.parse(localStorage.getItem("groupsList"));
             groupsList.groups.push(teamRequest);
             localStorage.setItem("groupsList", JSON.stringify(groupsList));
+            removeUnneccessaryFilters(true, true, true, true, true);
+            unclickOtherButtons("game-select");
             addNewGroup();
         }
     }
@@ -476,7 +488,7 @@ $(function() {
 
     function imageButtonClicked(button, classname) {
         unclickOtherButtons(classname);
-        button.classList.toggle("selectedButton");
+        button.classList.toggle("selected-button");
     }
 
     function buttonClicked(button, classname) {
@@ -487,31 +499,31 @@ $(function() {
     function unclickOtherButtons(classname) {
         let otherButtonsAtSameHierarchy = document.getElementsByClassName(classname);
         for (let i = 0; i < otherButtonsAtSameHierarchy.length; i++) {
-            otherButtonsAtSameHierarchy[i].classList.remove("selectedButton")
+            otherButtonsAtSameHierarchy[i].classList.remove("selected-button")
         }
     }
 
     function removeUnneccessaryFilters(gamemode, subGamemode, rank, teamSize, boardGame) {
         if (gamemode) {
-            removeFilters("gamemodeFilter");
+            removeFilters("gamemode-select");
             selectedGamemode = null;
         }
         if (subGamemode) {
-            removeFilters("subGamemodeFilter");
+            removeFilters("sub-gamemode-select");
             selectedSubGamemode = null;
         }
         if (rank) {
-            removeFilters("rankFilter");
+            removeFilters("rank-select");
             selectedRanks.clear();
         }
         if (teamSize) {
-            removeFilters("teamSizeFilter");
-            removeFilters("submitFiltersButton");
-            removeFilters("resetFiltersButton");
+            removeFilters("team-size-select");
+            removeFilters("submit-group-button");
+            removeFilters("reset-selections-button");
             selectedTeamSize = null;
         }
         if (boardGame) {
-            removeFilters("boardGameFilter");
+            removeFilters("board-game-select");
             selectedBoardGame = null;
         }
     }
