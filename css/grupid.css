@@ -325,7 +325,7 @@
 
 .group-request-item-data {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     padding: 0.3rem 0.8rem 0.3rem;
 }
 
@@ -339,6 +339,11 @@
 
 .group-request-item-game {
     color: black;
+}
+
+.group-request-item-data-piece {
+    display: flex;
+    flex-direction: column;
 }
 
 .groups-list-icon {

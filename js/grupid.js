@@ -69,7 +69,10 @@ $(function() {
                             imgUrl = boardGame.selIconPath;
                             gameInfo = ` data-game="boardGame" data-board-game="${boardGame.id}"`;
                             gameName = boardGame.name;
-                            gameData = `Mängijaid: ${registeredUsersList.length + 1}/${teamSize} | ${userName}`;
+                            gameData = `
+                                <div class="group-request-item-data-piece">${userName}</div>
+                                <div class="group-request-item-data-piece"><i class="fa fa-users"></i>${registeredUsersList.length + 1}/${teamSize}</div>
+                            `;
                         }
                     })
                 }
