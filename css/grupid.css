@@ -27,6 +27,7 @@
     margin: 0 auto;
     font-size: 2rem;
     vertical-align: middle;
+    box-shadow: 0 0 10px #555;
 }
 
 .modal-title, .modal-close {
@@ -34,11 +35,13 @@
     flex-direction: column;
     padding-left: 1rem;
     padding-right: 1rem;
+    padding-top: 5px;
 }
 
 .modal-close {
     margin-left: auto;
     border-left: 1px solid 743c3d;
+    cursor: pointer;
 }
 
 .modal-close:hover {
@@ -106,6 +109,20 @@
     background: #573a39;
 }
 .buttons-container::scrollbar-thumb {
+    background: #573a39;
+}
+
+.filter-row::-webkit-scrollbar {
+    height: 0.8em;
+}
+.filter-row::scrollbar {
+    height: 0.8em;
+}
+
+.filter-row::-webkit-scrollbar-thumb {
+    background: #573a39;
+}
+.filter-row::scrollbar-thumb {
     background: #573a39;
 }
 
@@ -202,6 +219,12 @@
     background-image: url(../img/euroopa_c.png);
 }
 
+#gamemodes-container, #sub-gamemodes-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
 .filter-button {
     cursor: pointer;
     border: 1px solid darkorange;
@@ -209,6 +232,7 @@
     color: darkorange;
     background: #333;
     margin: 0.2rem;
+    font-size: 16px;
 }
 
 .filter-button:hover, .selected-filter-button {
@@ -367,6 +391,7 @@
     flex-direction: column;
     overflow: auto;
     margin: 0;
+    margin-bottom: 3px;
 }
 
 .filter-row.buttons-container,

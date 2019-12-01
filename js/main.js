@@ -1,8 +1,10 @@
 $(function() {
 
     $(".user-menu").click(function(){
-        $("#dimmer").fadeToggle();
-        $(".sidebar-user").animate({width:'toggle'},350);
+		if (!$(".modal-inside").is(":visible")) {
+			$("#dimmer").fadeToggle();
+			$(".sidebar-user").animate({width:'toggle'},350);
+    	}
     });
 
 });
