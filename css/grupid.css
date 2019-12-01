@@ -30,6 +30,10 @@
     box-shadow: 0 0 10px #555;
 }
 
+.groups-list-header {
+    box-shadow: none;
+}
+
 .modal-title, .modal-close, .groups-list-title{
     display: flex;
     flex-direction: column;
@@ -304,13 +308,13 @@
 .groups-list {
     display: flex;
     flex-direction: column;
-    width: auto;
+    width: 65%;
 }
 
 .groups-filters {
     display: flex;
     flex-direction: column;
-    width: 40%;
+    width: 35%;
 }
 
 .right-aligned {
@@ -329,14 +333,14 @@
     display: flex;
     flex-direction: column;
     width: auto;
-    margin: 0 1rem 1rem;
+    margin: 0.5rem 1rem 1rem;
 }
 
 .groups-filters-container {
     display: flex;
     flex-direction: column;
     width: auto;
-    margin: 1rem;
+    margin: 0.5rem 1rem 1rem;
 }
 
 .group-filters-button {
@@ -430,11 +434,11 @@
         flex-direction: column;
     }
 
-    .groups-list-container {
+    .groups-list {
         width: 90%;
     }
 
-    .groups-filters-container {
+    .groups-filters {
         width: 90%;
     }
 
