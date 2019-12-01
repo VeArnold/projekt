@@ -32,6 +32,7 @@ $(function() {
     // Toggles the add group modal
     function addNewGroup() {
         document.getElementById("add-new-group-request-modal").classList.toggle("visible");
+        $("#dimmer").fadeToggle();
     }
 
     function readGameConfig() {
