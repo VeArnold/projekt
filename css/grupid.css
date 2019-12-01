@@ -227,9 +227,9 @@
 
 .filter-button {
     cursor: pointer;
-    border: 1px solid darkorange;
+    border: 1px solid #743c3d;
     padding: 0.5rem;
-    color: darkorange;
+    color: #D3D3D3;
     background: #333;
     margin: 0.2rem;
     font-size: 16px;
