@@ -150,7 +150,7 @@ input[type="button"]:hover {
     background: #2E3334;
     margin: 0;
     width: 1rem;
-    background-image: url("../img/steamicon.png");
+    background-image: url("../img/steamicon_highlight.png");
     background-repeat: no-repeat;
     background-position: center;
     background-size: 90%;
