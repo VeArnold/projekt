@@ -47,18 +47,18 @@ hr {
 }
 
 input[type="text"] {
-    border: 1px solid darkorange;
+    border: 1px solid #743c3d;
     padding: 0.5rem;
-    color: darkorange;
+    color: white;
     background: #333;
     margin: 0.2rem;
     font-family: "play";
 }
 
 textarea {
-    border: 1px solid darkorange;
+    border: 1px solid #743c3d;
     padding: 0.5rem;
-    color: darkorange;
+    color: white;
     background: #333;
     margin: 0.2rem;
     font-family: "play";
@@ -66,9 +66,9 @@ textarea {
 
 input[type="button"] {
     cursor: pointer;
-    border: 1px solid darkorange;
     padding: 0.5rem;
-    color: darkorange;
+    border: none;
+    color: white;
     background: #333;
     margin: 0.2rem;
     font-family: "play";
@@ -134,6 +134,26 @@ input[type="button"]:hover {
     background-repeat: no-repeat;
     background-size: 90%;
     background-position: center;
+}
+
+.navbar-steamicon {
+    margin: 0;
+    width: 1rem;
+    background: #202525;
+    background-image: url("../img/steamicon.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 90%;
+}
+
+.navbar-steamicon:hover {
+    background: #2E3334;
+    margin: 0;
+    width: 1rem;
+    background-image: url("../img/steamicon.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 90%;
 }
 
 .navbar-logo:hover {
@@ -277,7 +297,7 @@ input[type="button"]:hover {
 
 .modal-inside {
     background: #202525;
-    border: 1px solid darkorange;
+    border: 1px solid #743c3d;
     box-shadow: 0px 0px 10px #555;
     display: inline-block;
     min-height: 100px;
@@ -342,7 +362,7 @@ input[type="button"]:hover {
 }
 
 .game-button:hover, .selectedButton {
-    border-bottom: 3px solid darkorange;
+    border-bottom: 3px solid #743c3d;
 }
 
 #csgoButton, #minecraftButton, #ck2Button, #lolButton, #boardGamesButton {
@@ -396,7 +416,7 @@ input[type="button"]:hover {
     appearance: none;
     height: 22px;
     background: #333;
-    border: 1px solid darkorange;
+    border: 1px solid #743c3d;
     outline: none;
     margin-top: 8px;
 }
@@ -419,8 +439,8 @@ input[type="button"]:hover {
     margin-bottom: 10px;
     height: 20px;
     background: #333;
-    border: 1px solid darkorange;
-    color: darkorange;
+    border: 1px solid #743c3d;
+    color: white;
     position: relative;
     top: -8px;
 }
@@ -447,7 +467,7 @@ input[type="button"]:hover {
 }
 
 .checkBoxButton {
-    border: 1px solid darkorange;
+    border: 1px solid #743c3d;
     padding: 0.5rem;
     color: white;
 }
@@ -487,7 +507,7 @@ input[type="button"]:hover {
     border: 1px solid black;
     display: flex;
     flex-direction: row;
-    background: orange;
+    background: #743c3d;
     color: white;
     padding: 0.3rem 0.8rem 0.3rem;
 }
