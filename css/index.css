@@ -1,0 +1,27 @@
+.home-marquee {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+  	overflow: hidden;
+  	width: 100%;
+  	transform: translate3d(0, 0, 0);
+}
+
+.home-marquee-images {
+  background: url(../img/marquee.png);
+  height: 200px;
+  width: 1000%;
+  animation: moveSlideshow 120s linear infinite;
+}
+
+@keyframes moveSlideshow {
+  100% { 
+    transform: translateX(-67%);  
+  }
+}
+
+@media only screen and (max-height: 500px) {
+    .home-marquee-images {
+    	display: none;
+    }
+}
