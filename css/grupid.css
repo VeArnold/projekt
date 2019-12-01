@@ -1,0 +1,330 @@
+/* Modal */
+.modal {
+    display: none;
+    height: 90%;
+    position: fixed;
+    text-align: center;
+    top: 3.5rem;
+    left: 0;
+    width: 100%;
+    z-index: 10000;
+    background: none;
+}
+
+.visible {
+    display: block;
+}
+
+.modal-header {
+    display: flex;
+    flex-direction: row;
+    width: 70%;
+    height: 3rem;
+    border: 1px solid #743c3d;
+    background-color: rgba(33, 38, 38, 0.95);
+    color: white;
+    padding: 0;
+    margin: 0 auto;
+    font-size: 2rem;
+    vertical-align: middle;
+}
+
+.modal-title, .modal-close {
+    display: flex;
+    flex-direction: column;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.modal-close {
+    margin-left: auto;
+    border-left: 1px solid 743c3d;
+}
+
+.modal-close:hover {
+    background-color: #743c3d;
+}
+
+.modal-inside {
+    background: rgba(33, 38, 38, 0.95);
+    border: 1px solid #743c3d;
+    box-shadow: 0 0 10px #555;
+    display: inline-block;
+    min-height: 100px;
+    vertical-align: middle;
+    width: 60%;
+    height: 80%;
+    position: relative;
+    padding: 3% 5%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.modal-inside::-webkit-scrollbar {
+    width: 0.8em;
+}
+.modal-inside::scrollbar {
+    width: 0.8em;
+}
+
+.modal-inside::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+.modal-inside::scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+
+.modal-inside::-webkit-scrollbar-thumb {
+    background: #573a39;
+}
+.modal-inside::scrollbar-thumb {
+    background: #573a39;
+}
+
+/* Filtrid */
+.buttons-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    overflow-x: auto;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.buttons-container::-webkit-scrollbar {
+    height: 0.8em;
+}
+.buttons-container::scrollbar {
+    height: 0.8em;
+}
+
+.buttons-container::-webkit-scrollbar-thumb {
+    background: #573a39;
+}
+.buttons-container::scrollbar-thumb {
+    background: #573a39;
+}
+
+.game-button {
+    min-width: 180px;
+    min-height: 60px;
+    border-bottom: none;
+    cursor: pointer;
+}
+
+.game-button:hover, .selected-button {
+    border-bottom: 3px solid #743c3d;
+}
+
+#csgoButton, #minecraftButton, #ck2Button, #lolButton, #board-games-button, #riskButton, #explodingKittensButton, #monopolyButton, #euroopaButton {
+    background-repeat: no-repeat;
+    background-size: 180px 60px;
+}
+
+#csgoButton {
+    background-image: url(../img/csgo_gs.png);
+}
+#csgoButton:hover, #csgoButton.selected-button {
+    background-image: url(../img/csgo_c.png);
+}
+#minecraftButton {
+    background-image: url(../img/minecraft_gs.png);
+}
+#minecraftButton:hover, #minecraftButton.selected-button {
+    background-image: url(../img/minecraft_c.png);
+}
+#ck2Button {
+    background-image: url(../img/crusader_kings_gs.png);
+}
+#ck2Button:hover, #ck2Button.selected-button {
+    background-image: url(../img/crusader_kings_c.png);
+}
+#lolButton {
+    background-image: url(../img/lol_gs.png);
+}
+#lolButton:hover, #lolButton.selected-button {
+    background-image: url(../img/lol_c.png);
+}
+#board-games-button {
+    background-image: url(../img/lauamängud_gs.png);
+}
+#board-games-button:hover, #board-games-button.selected-button {
+    background-image: url(../img/lauamängud_c.png);
+}
+
+#riskButton {
+    background-image: url(../img/risk_gs.png);
+}
+
+#riskButton:hover, #riskButton.selected-button {
+    background-image: url(../img/risk_c.png);
+}
+
+#monopolyButton {
+    background-image: url(../img/monopoly_gs.png);
+}
+
+#monopolyButton:hover, #monopolyButton.selected-button {
+    background-image: url(../img/monopoly_c.png);
+}
+
+#explodingKittensButton {
+    background-image: url(../img/explodingkittens_gs.png);
+}
+
+#explodingKittensButton:hover, #explodingKittensButton.selected-button {
+    background-image: url(../img/explodingkittens_c.png);
+}
+
+#euroopaButton {
+    background-image: url(../img/euroopa_gs.png);
+}
+
+#euroopaButton:hover, #euroopaButton.selected-button {
+    background-image: url(../img/euroopa_c.png);
+}
+
+.filter-button {
+    cursor: pointer;
+    border: 1px solid darkorange;
+    padding: 0.5rem;
+    color: darkorange;
+    background: #333;
+    margin: 0.2rem;
+}
+
+.filter-button:hover, .selected-filter-button {
+    background: #573a39;
+    color: white;
+}
+
+.filter-button-group {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.team-size-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 22px;
+    background: #333;
+    border: 1px solid #743c3d;
+    outline: none;
+    margin-top: 8px;
+}
+.team-size-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 22px;
+    background: #573a39;
+    cursor: pointer;
+}
+.team-size-slider::-moz-range-thumb {
+    width: 15px;
+    height: 22px;
+    background: #573a39;
+    cursor: pointer;
+}
+
+.team-size-box {
+    margin-bottom: 10px;
+    height: 20px;
+    background: #333;
+    border: 1px solid #743c3d;
+    color: white;
+    position: relative;
+    top: -8px;
+}
+
+.rankFilters {
+    width: auto;
+}
+
+.rank-filters {
+    font-size: 15px;
+}
+
+.rank-col {
+    display: inline-flex;
+    flex-direction: column;
+    width: 32%;
+    margin-top: 0.2rem;
+}
+
+.rank-col div {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.check-box-button {
+    border: 1px solid #743c3d;
+    padding: 0.5rem;
+    color: white;
+}
+
+.icon {
+    display: flex;
+    flex-direction: column;
+    height: 60px;
+    width: auto;
+}
+
+.icon-hidden {
+    display: none;
+}
+
+/* Gruppide list */
+.groups {
+    display: flex;
+    flex-direction: row;
+}
+
+.groups-list-container {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    margin: 1rem;
+}
+
+.groups-filters-container {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    margin: 1rem;
+}
+
+.group-request-item {
+    border: 1px solid black;
+    display: flex;
+    flex-direction: row;
+    background: #743c3d;
+    color: white;
+    padding: 0.3rem 0.8rem 0.3rem;
+}
+
+.group-request-item-game .groupRequestItemData {
+    display: flex;
+    flex-direction: row;
+    padding: 0.4rem;
+    margin-left: 1rem;
+    width: 30%;
+}
+
+.group-request-item-game {
+    color: black;
+}
+
+/* List filters */
+.filter-row {
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+    overflow: scroll;
+}
+
+.rank-filter-column {
+    display: flex;
+    flex-direction: column;
+}

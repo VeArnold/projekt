@@ -37,7 +37,7 @@ $(function() {
         let groupsList = JSON.parse(localStorage.getItem("groupsList"));
 
         // Find parent
-        let parent = document.getElementById("groupsListContainer");
+        let parent = document.getElementById("groups-list-container");
 
         let html = "";
         groupsList.groups.forEach(group => {
@@ -99,9 +99,9 @@ $(function() {
                 })
             }
             html += `
-                <div class="groupRequestItem">
-                    <div class="groupRequestItemGame">${gameName}</div>
-                    <div class="groupRequestItemData">
+                <div class="group-request-item">
+                    <div class="group-request-item-game">${gameName}</div>
+                    <div class="group-request-item-data">
                         ${gameData}
                     </div>
                     <input class="filter-button" type="button" value="Join team"/>
@@ -115,7 +115,7 @@ $(function() {
 
     function createListFilters() {
         // Find parent
-        let parent = document.getElementById("groupsFiltersContainer");
+        let parent = document.getElementById("groups-filters-container");
 
 
     }
