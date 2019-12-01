@@ -38,7 +38,7 @@
     background: url(../img/marquee.png);
     height: 200px;
     width: 1000%;
-    animation: moveSlideshow 120s linear infinite;
+    animation: moveSlideshow 300s linear infinite;
 }
 @keyframes moveSlideshow {
     100% { 
@@ -47,7 +47,7 @@
 }
 @media only screen and (max-width: 600px) {
     .iframe-container {
-        width: 290px;
-        height: 160px;
+        width: 250px;
+        height: 130px;
     }
 }
