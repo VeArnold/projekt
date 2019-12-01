@@ -33,22 +33,31 @@
         <div class="sidebar-item">Logi välja</div>
     </div>
     <div class="page">
-        <div class="buttons-container filter-container">
-            <button class="filter-button" id="add-new-group-request-button">Lisa uus grupp</button>
-        </div>
 
         <div class="groups">
-            <div class="groups-list-container" id="groups-list-container"></div>
-
-            <div class="groups-filters-container" id="groups-filters-container">
-                <div class="filter-row buttons-container" id="groups-filters-buttons-container"></div>
-                <div class="filter-row buttons-container" id="groups-filters-board-game-container"></div>
-                <div class="filter-row" id="groups-filters-gamemode-container"></div>
-                <div class="filter-row" id="groups-filters-sub-gamemode-container"></div>
-                <div class="filter-row" id="groups-filters-ranks-container"></div>
-                <div class="filter-row" id="groups-filters-numerical-ranks-container"></div>
-                <div class="filter-row">
-                    <div class="filter-button" id="groups-filters-reset-button">Kustuta filtrid</div>
+            <div class="groups-list">
+                <div class="groups-list-header">
+                    <div class="groups-list-title">Gruppide nimekiri</div>
+                    <div class="buttons-container filter-container right-aligned">
+                        <button class="filter-button" id="add-new-group-request-button">Lisa uus grupp</button>
+                    </div>
+                </div>
+                <div class="groups-list-container" id="groups-list-container"></div>
+            </div>
+            <div class="groups-filters">
+                <div class="groups-list-header">
+                    <div class="groups-list-title">Filtrid</div>
+                </div>
+                <div class="groups-filters-container" id="groups-filters-container">
+                    <div class="filter-row buttons-container" id="groups-filters-buttons-container"></div>
+                    <div class="filter-row buttons-container" id="groups-filters-board-game-container"></div>
+                    <div class="filter-row" id="groups-filters-gamemode-container"></div>
+                    <div class="filter-row" id="groups-filters-sub-gamemode-container"></div>
+                    <div class="filter-row" id="groups-filters-ranks-container"></div>
+                    <div class="filter-row" id="groups-filters-numerical-ranks-container"></div>
+                    <div class="filter-row">
+                        <div class="filter-button group-filters-button" id="groups-filters-reset-button">Kustuta filtrid</div>
+                    </div>
                 </div>
             </div>
         </div>

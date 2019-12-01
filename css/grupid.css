@@ -15,7 +15,7 @@
     display: block;
 }
 
-.modal-header {
+.modal-header, .groups-list-header {
     display: flex;
     flex-direction: row;
     width: 70%;
@@ -30,7 +30,7 @@
     box-shadow: 0 0 10px #555;
 }
 
-.modal-title, .modal-close {
+.modal-title, .modal-close, .groups-list-title{
     display: flex;
     flex-direction: column;
     padding-left: 1rem;
@@ -294,20 +294,55 @@
 .groups {
     display: flex;
     flex-direction: row;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 3rem;
+    background-color: rgba(33, 38, 38, 0.3);
+}
+
+.groups-list {
+    display: flex;
+    flex-direction: column;
+    width: auto;
+}
+
+.groups-filters {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+}
+
+.right-aligned {
+    margin-left: auto;
+    margin-right: 0;
+}
+
+.groups-list-header {
+    display: flex;
+    margin: 0 1rem;
+    padding: 0;
+    width: auto;
 }
 
 .groups-list-container {
     display: flex;
     flex-direction: column;
-    width: 70%;
-    margin: 1rem;
+    width: auto;
+    margin: 0 1rem 1rem;
 }
 
 .groups-filters-container {
     display: flex;
     flex-direction: column;
-    width: 30%;
+    width: auto;
     margin: 1rem;
+}
+
+.group-filters-button {
+    display: flex;
+    width: auto;
+    margin-left: auto;
 }
 
 .group-request-item {

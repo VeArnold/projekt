@@ -37,7 +37,7 @@ input[type="text"] {
     color: white;
     background: #333;
     margin: 0.2rem;
-    font-family: "play";
+    font-family: "play", sans-serif;
 }
 
 textarea {
@@ -46,7 +46,7 @@ textarea {
     color: white;
     background: #333;
     margin: 0.2rem;
-    font-family: "play";
+    font-family: "play", sans-serif;
 }
 
 input[type="button"], button {
@@ -56,7 +56,7 @@ input[type="button"], button {
     color: white;
     background: #333;
     margin: 0.2rem;
-    font-family: "play";
+    font-family: "play", sans-serif;
 }
 
 input[type="button"]:hover, button:hover {
@@ -66,7 +66,7 @@ input[type="button"]:hover, button:hover {
 
 @keyframes scroll{
     100%{
-        background-position:0px -3000px;
+        background-position:0 -3000px;
     }
 }
 
@@ -83,7 +83,7 @@ input[type="button"]:hover, button:hover {
     flex-direction: row;
     position: fixed;
     width: 100%;
-    height: 2.75rem;
+    height: 3.5rem;
     top: 0;
     left: 0;
     background: #202525;
@@ -95,10 +95,10 @@ input[type="button"]:hover, button:hover {
 .navbar-item {
     display: flex;
     flex-direction: row;
-    font-size: 20px;
+    font-size: 2rem;
     border-right: 1px solid #505050;
     padding: 10px;
-    height: 1.50rem;
+    height: auto;
 }
 
 .navbar-item:hover {
@@ -112,30 +112,28 @@ input[type="button"]:hover, button:hover {
 }
 
 .navbar-logo {
-    width: 10rem;
+    height: 3.5rem;
+    width: 17.5rem;
     border-right: 1px solid #505050;
-    background: #743c3d;
-    background-image: url("../img/ut_G.png");
-    background-repeat: no-repeat;
-    background-size: 90%;
-    background-position: center;
+    background: #743c3d url("../img/ut_G.png") no-repeat center;
+    background-size: 17.5rem 3.5rem;
+    padding: 0;
+    margin: 0;
 }
 
 .navbar-logo:hover {
-    background: #913E3F;
-    background-image: url("../img/ut_G.png");
-    background-repeat: no-repeat;
-    background-size: 90%;
-    background-position: center;
+    background: #913E3F url("../img/ut_G.png") no-repeat center;
+    background-size: 17.5rem 3.5rem;
 }
 
 .navbar-steamicon {
-    width: 1.5rem;
-    font-size: 2rem;
+    height: 2.5rem;
+    width: auto;
+    font-size: 2.5rem;
     color: #743c3d;
     padding-left: 0.5rem;
-    padding-top: 6px;
-    padding-bottom: 13px;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
 }
 
 .navbar-steamicon:hover {
@@ -166,7 +164,7 @@ input[type="button"]:hover, button:hover {
     position: fixed;
     width: 15rem;
     height: 100%;
-    top: 2.75rem;
+    top: 3.5rem;
     right: 0;
     background: #573a39;
     color: #F0F1ED;
@@ -256,6 +254,9 @@ input[type="button"]:hover, button:hover {
     text-decoration: underline;
 }
 
+.christmas-img {
+    padding-left: 77px;
+}
 /** RESPONSIVE **/
 @media only screen and (max-width: 600px) {
     .page {
