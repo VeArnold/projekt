@@ -349,7 +349,7 @@
 
 .group-request-item-data {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     padding: 0.3rem 0.8rem 0.3rem;
 }
 
@@ -363,6 +363,14 @@
 
 .group-request-item-game {
     color: black;
+}
+
+.group-request-item-data-piece {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    vertical-align: middle;
+    padding: 0.3rem;
 }
 
 .groups-list-icon {
@@ -386,7 +394,7 @@
     flex-direction: column;
     overflow: auto;
     margin: 0;
-    margin-bottom: 3px;
+    margin-bottom: 4px;
 }
 
 .filter-row.buttons-container,
