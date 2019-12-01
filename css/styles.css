@@ -255,7 +255,7 @@ input[type="button"]:hover, button:hover {
 }
 
 .christmas-img {
-    padding-left: 77px;
+    padding-left: 0.5rem;
 }
 /** RESPONSIVE **/
 @media only screen and (max-width: 900px) {

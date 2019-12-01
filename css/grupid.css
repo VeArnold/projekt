@@ -298,7 +298,6 @@
 .groups {
     display: flex;
     flex-direction: row;
-    width: 90%;
     margin-left: auto;
     margin-right: auto;
     padding: 3rem;
@@ -432,19 +431,29 @@
 @media only screen and (max-width: 600px) {
     .groups {
         flex-direction: column;
+        padding: 1.5rem;
     }
 
     .groups-list {
-        width: 90%;
+        width: 100%;
     }
 
     .groups-filters {
-        width: 90%;
+        width: 100%;
     }
 
     .filter-container {
         margin: 0;
         justify-content: center;
+    }
+
+    .groups-list-title {
+        font-size: 18px;
+        margin-top: 8px;
+    }
+
+    .groups-list-header .filter-button {
+        font-size: 10px;
     }
 }
 
