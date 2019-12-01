@@ -40,7 +40,7 @@
 
 .modal-close {
     margin-left: auto;
-    border-left: 1px solid 743c3d;
+    border-left: 1px solid #743c3d;
     cursor: pointer;
 }
 
@@ -66,21 +66,10 @@
 .modal-inside::-webkit-scrollbar {
     width: 0.8em;
 }
-.modal-inside::scrollbar {
-    width: 0.8em;
-}
-
 .modal-inside::-webkit-scrollbar-track {
     box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
 }
-.modal-inside::scrollbar-track {
-    box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-}
-
 .modal-inside::-webkit-scrollbar-thumb {
-    background: #573a39;
-}
-.modal-inside::scrollbar-thumb {
     background: #573a39;
 }
 
@@ -101,28 +90,13 @@
 .buttons-container::-webkit-scrollbar {
     height: 0.8em;
 }
-.buttons-container::scrollbar {
-    height: 0.8em;
-}
-
 .buttons-container::-webkit-scrollbar-thumb {
     background: #573a39;
 }
-.buttons-container::scrollbar-thumb {
-    background: #573a39;
-}
-
 .filter-row::-webkit-scrollbar {
     height: 0.8em;
 }
-.filter-row::scrollbar {
-    height: 0.8em;
-}
-
 .filter-row::-webkit-scrollbar-thumb {
-    background: #573a39;
-}
-.filter-row::scrollbar-thumb {
     background: #573a39;
 }
 
