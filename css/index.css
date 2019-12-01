@@ -1,45 +1,53 @@
-/* U-tube */
-
-.iframe-container{
+.iframe-container {
+    margin: 0 auto;
+	margin-top: 25px;
     position: relative;
-    width: 100%;
-    padding-bottom: 56.25%;
-    height: 0;
+    width: 590px;
+    height: 360px;
 }
-.iframe-container iframe{
+.iframe-container iframe {
     position: absolute;
     left: 0;
     width: 100%;
     height: 100%;
 }
 
-/* Lehesektsioonid */
-.container {
+.home-news {
+    width: 75%;
+    margin: 0 auto;
+    margin-top: 290px;
+}
+.home-news-date {
+    margin-top: -10px;
+    font-size: 14px;
+}
+.home-news-text {
+    font-size: 16px;
+}
+
+.home-marquee {
+    position: absolute;
+    margin-top: 25px;
+    left: 0;
+    overflow: hidden;
     width: 100%;
-    height: 100%;
+    height: 200px;
+    transform: translate3d(0, 0, 0);
 }
-
-.leftpane {
-    width: 18%;
-    height: 100%;
-    float: left;
-    border-collapse: collapse;
-    padding-top: 1rem;
+.home-marquee-images {
+    background: url(../img/marquee.png);
+    height: 200px;
+    width: 1000%;
+    animation: moveSlideshow 120s linear infinite;
 }
-
-.middlepane {
-    width: 64%;
-    height: 100%;
-    float: left;
-    border-collapse: collapse;
-    padding-top: 3rem;
+@keyframes moveSlideshow {
+    100% { 
+        transform: translateX(-67%);  
+    }
 }
-
-.rightpane {
-    width: 18%;
-    height: 100%;
-    position: relative;
-    float: right;
-    border-collapse: collapse;
-    padding-top: 1rem;
+@media only screen and (max-width: 600px) {
+    .iframe-container {
+        width: 290px;
+        height: 160px;
+    }
 }

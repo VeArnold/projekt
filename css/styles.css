@@ -67,7 +67,7 @@ textarea {
 input[type="button"] {
     cursor: pointer;
     padding: 0.5rem;
-    border: none;
+    border: 1px solid #743c3d;
     color: white;
     background: #333;
     margin: 0.2rem;
@@ -136,32 +136,30 @@ input[type="button"]:hover {
     background-position: center;
 }
 
-.navbar-steamicon {
-    margin: 0;
-    width: 1rem;
-    background: #202525;
-    background-image: url("../img/steamicon.png");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 90%;
-}
-
-.navbar-steamicon:hover {
-    background: #2E3334;
-    margin: 0;
-    width: 1rem;
-    background-image: url("../img/steamicon_highlight.png");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 90%;
-}
-
 .navbar-logo:hover {
     background: #913E3F;
     background-image: url("../img/ut_G.png");
     background-repeat: no-repeat;
     background-size: 90%;
     background-position: center;
+}
+
+.navbar-steamicon {
+    margin: 0;
+    width: 2rem;
+    background: #202525;
+    background-image: url("../img/steamicon.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 60%;
+}
+
+.navbar-steamicon:hover {
+    background: #2E3334;
+    background-image: url("../img/steamicon_highlight.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 60%;
 }
 
 .navbar-selected {
