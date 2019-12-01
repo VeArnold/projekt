@@ -13,7 +13,27 @@ body {
     top: 0;
     left: 0;
     height: 100%;
-    overflow: hidden;
+    overflow: auto;
+}
+body::-webkit-scrollbar {
+    width: 0.8em; 
+}
+body::scrollbar { 
+    width: 0.8em; 
+}
+
+body::-webkit-scrollbar-track { 
+    box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+}
+body::scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+}
+
+body::-webkit-scrollbar-thumb { 
+    background: #573a39;
+}
+body::scrollbar-thumb {
+    background: #573a39;  
 }
 
 a {
@@ -21,23 +41,48 @@ a {
     color: #F0F1ED;
 }
 
-@-ms-keyframes scroll{
-    100%{
-        background-position:0px -3000px;
-    }
+hr {
+    border: none;
+    border-bottom: 2px solid #505050;
+}
+
+input[type="text"] {
+    border: 1px solid #743c3d;
+    padding: 0.5rem;
+    color: white;
+    background: #333;
+    margin: 0.2rem;
+    font-family: "play";
+}
+
+textarea {
+    border: 1px solid #743c3d;
+    padding: 0.5rem;
+    color: white;
+    background: #333;
+    margin: 0.2rem;
+    font-family: "play";
+}
+
+input[type="button"] {
+    cursor: pointer;
+    padding: 0.5rem;
+    border: none;
+    color: white;
+    background: #333;
+    margin: 0.2rem;
+    font-family: "play";
+}
+
+input[type="button"]:hover {
+    background: #573a39;
+    color: white;
 }
 
 @keyframes scroll{
     100%{
         background-position:0px -3000px;
     }
-}
-
-.img-logo {
-    width: 225px;
-    height: 45px;
-    background-image: url("../img/ut_G.png");
-    background-size: 100%;
 }
 
 @font-face {
@@ -53,6 +98,7 @@ a {
     flex-direction: row;
     position: fixed;
     width: 100%;
+    height: 2.75rem;
     top: 0;
     left: 0;
     background: #202525;
@@ -67,6 +113,12 @@ a {
     font-size: 20px;
     border-right: 1px solid #505050;
     padding: 10px;
+    height: 1.50rem;
+}
+
+.navbar-item:hover {
+    background: #2E3334;
+    cursor: pointer;
 }
 
 .navbar-item:last-child {
@@ -74,23 +126,42 @@ a {
     border-left: 1px solid #505050;
 }
 
-.navbar-item:hover {
-     background: #2E3334;
-     cursor: pointer;
-}
-
-.sidebar-item:hover {
-    background: #913E3F;
-    cursor: pointer;
-}
-
 .navbar-logo {
-    margin: 0;
-    height: 100%;
-    display: flex;
-    flex-direction: row;
+    width: 10rem;
     border-right: 1px solid #505050;
     background: #743c3d;
+    background-image: url("../img/ut_G.png");
+    background-repeat: no-repeat;
+    background-size: 90%;
+    background-position: center;
+}
+
+.navbar-steamicon {
+    margin: 0;
+    width: 1rem;
+    background: #202525;
+    background-image: url("../img/steamicon.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 90%;
+}
+
+.navbar-steamicon:hover {
+    background: #2E3334;
+    margin: 0;
+    width: 1rem;
+    background-image: url("../img/steamicon.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 90%;
+}
+
+.navbar-logo:hover {
+    background: #913E3F;
+    background-image: url("../img/ut_G.png");
+    background-repeat: no-repeat;
+    background-size: 90%;
+    background-position: center;
 }
 
 .navbar-selected {
@@ -117,10 +188,11 @@ a {
     position: fixed;
     width: 15rem;
     height: 100%;
-    top: 46px;
+    top: 2.75rem;
     right: 0;
     background: #573a39;
     color: #F0F1ED;
+    border-top: 1px solid #505050;
     border-left: 1px solid #505050;
     z-index: 2;
 }
@@ -132,6 +204,19 @@ a {
     white-space: nowrap; 
     overflow: hidden;
     text-overflow: clip;
+}
+
+.sidebar-overflow {
+    display: none;
+}
+
+.sidebar-overflow-last {
+    border-bottom: 5px solid #505050;
+}
+
+.sidebar-item:hover {
+    background: #913E3F;
+    cursor: pointer;
 }
 
 .sidebar-avatar {
@@ -148,8 +233,8 @@ a {
 }
 
 .sidebar-username {
-    margin-top: -25px;
-    margin-bottom: 7px;
+    margin-top: -26px;
+    margin-bottom: 8px;
     margin-left: 45px;
 }
 
@@ -172,6 +257,27 @@ a {
     z-index: 1;
 }
 
+.page-logo {
+    margin: 0 auto;
+    min-width: 50%;
+    max-width: 75%;
+}
+
+.page-logo img {
+    width: 100%;
+    user-select: none;
+}
+
+.page-mainbox {
+    color: white;
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+.page-mainbox a {
+    text-decoration: underline;
+}
+
 /* Modal */
 .modal {
     display: none;
@@ -191,7 +297,7 @@ a {
 
 .modal-inside {
     background: #202525;
-    border: 1px solid darkorange;
+    border: 1px solid #743c3d;
     box-shadow: 0px 0px 10px #555;
     display: inline-block;
     min-height: 100px;
@@ -257,7 +363,7 @@ a {
 }
 
 .game-button:hover, .selectedButton {
-    border-bottom: 3px solid darkorange;
+    border-bottom: 3px solid #743c3d;
 }
 
 #csgoButton, #minecraftButton, #ck2Button, #lolButton, #boardGamesButton, #riskButton, #explodingKittensButton, #monopolyButton, #euroopaButton {
@@ -352,7 +458,7 @@ a {
     appearance: none;
     height: 22px;
     background: #333;
-    border: 1px solid darkorange;
+    border: 1px solid #743c3d;
     outline: none;
     margin-top: 8px;
 }
@@ -375,8 +481,8 @@ a {
     margin-bottom: 10px;
     height: 20px;
     background: #333;
-    border: 1px solid darkorange;
-    color: darkorange;
+    border: 1px solid #743c3d;
+    color: white;
     position: relative;
     top: -8px;
 }
@@ -403,7 +509,7 @@ a {
 }
 
 .checkBoxButton {
-    border: 1px solid darkorange;
+    border: 1px solid #743c3d;
     padding: 0.5rem;
     color: white;
 }
@@ -443,7 +549,7 @@ a {
     border: 1px solid black;
     display: flex;
     flex-direction: row;
-    background: orange;
+    background: #743c3d;
     color: white;
     padding: 0.3rem 0.8rem 0.3rem;
 }
@@ -471,4 +577,24 @@ a {
 .rank-filter-column {
     display: flex;
     flex-direction: column;
+}
+
+/** RESPONSIVE **/
+@media only screen and (max-width: 600px) {
+    .page {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .sidebar-overflow {
+        display: flex;
+    }
+
+    .navbar-left {
+        display: none;
+    }
+
+    .navbar-logo {
+        display: flex;
+    }
 }
