@@ -338,19 +338,21 @@
 }
 
 .group-request-item {
-    border: 1px solid black;
     display: flex;
     flex-direction: row;
-    background: #743c3d;
+    background: #333;
+    border: 2px solid #743c3d;
     color: white;
-    margin: 0;
-    padding: 0;
+    margin-bottom: 5px;
+    padding: 5px;
 }
 
 .group-request-item-data {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     padding: 0.3rem 0.8rem 0.3rem;
+    width: 100%;
+    text-align: center;
 }
 
 .group-request-item-game .groupRequestItemData {
@@ -366,18 +368,21 @@
 }
 
 .group-request-item-data-piece {
-    display: flex;
-    flex-direction: column;
     justify-content: center;
     vertical-align: middle;
     padding: 0.3rem;
+    color: #aaa;
 }
 
 .groups-list-icon {
-    height: 60px;
+    height: 80px;
     margin-top: 0;
     margin-bottom: 0;
     width: auto;
+}
+
+.group-request-item .filter-button {
+    display: table;
 }
 
 .left-aligned {
@@ -386,6 +391,12 @@
 
 .list-item-hidden {
     display: none;
+}
+
+.group-host {
+    font-weight: bold;
+    font-size: 16px;
+    color: white;
 }
 
 /* List filters */
@@ -423,5 +434,19 @@
     .filter-container {
         margin: 0;
         justify-content: center;
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    .group-request-item {
+        display: block;
+    }
+    .group-request-item-game {
+        display: block;
+        width: 100%;
+    }
+    .groups-list-icon {
+        width: 100%;
+        height: auto;
     }
 }

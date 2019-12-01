@@ -71,8 +71,8 @@ $(function() {
                             gameInfo = ` data-game="boardGame" data-board-game="${boardGame.id}"`;
                             gameName = boardGame.name;
                             gameData = `
-                                <div class="group-request-item-data-piece">${userName}</div>
-                                <div class="group-request-item-data-piece"><i class="fa fa-users"></i>${registeredUsersList.length + 1}/${teamSize}</div>
+                                <div class="group-request-item-data-piece group-host">Host: ${userName}</div>
+                                <div class="group-request-item-data-piece group-users"><i class="fa fa-users"></i> ${registeredUsersList.length + 1}/${teamSize}</div>
                             `;
                         }
                     })
@@ -103,22 +103,22 @@ $(function() {
                             ranksListText = ranksList.join(", ");
                         }
                         gameData += `
-                                <div class="group-request-item-data-piece">${userName}</div>
-                                <div class="group-request-item-data-piece"><i class="fa fa-users"></i>${registeredUsersList.length + 1}/${teamSize}</div>
+                                <div class="group-request-item-data-piece group-host">Host: ${userName}</div>
+                                <div class="group-request-item-data-piece group-users"><i class="fa fa-users"></i> ${registeredUsersList.length + 1}/${teamSize}</div>
                                 `;
                         if (gamemodeName !== "") {
                             gameData += `
-                                <div class="group-request-item-data-piece">${gamemodeName}</div>
+                                <div class="group-request-item-data-piece group-gamemode">${gamemodeName}</div>
                                 `;
                             if (subGamemodeName !== "") {
                                 gameData += `
-                                <div class="group-request-item-data-piece">${subGamemodeName}</div>
+                                <div class="group-request-item-data-piece group-subgamemode">${subGamemodeName}</div>
                                 `;
                             }
                         }
                         if (ranksListText !== "") {
                             gameData += `
-                                <div class="group-request-item-data-piece">${ranksListText}</div>
+                                <div class="group-request-item-data-piece group-ranks">${ranksListText}</div>
                                 `;                        }
                     }
                 })
