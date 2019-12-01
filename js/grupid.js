@@ -24,7 +24,7 @@ $(function() {
         let deleteGroupFilters = document.getElementById("groups-filters-reset-button");
         deleteGroupFilters.addEventListener("click", function () {
             removeUnneccessaryFilters(true, true, true, true, true, true);
-            unclickOtherButtons("game-select");
+            unclickOtherButtons("groups-game-select");
             filterGroupsList(null, null, null, null, null);
         }, false);
     });
@@ -102,16 +102,24 @@ $(function() {
                         if (ranksList && ranksList.length > 0) {
                             ranksListText = ranksList.join(", ");
                         }
+                        gameData += `
+                                <div class="group-request-item-data-piece">${userName}</div>
+                                <div class="group-request-item-data-piece"><i class="fa fa-users"></i>${registeredUsersList.length + 1}/${teamSize}</div>
+                                `;
                         if (gamemodeName !== "") {
-                            gameData += gamemodeName + " | ";
+                            gameData += `
+                                <div class="group-request-item-data-piece">${gamemodeName}</div>
+                                `;
                             if (subGamemodeName !== "") {
-                                gameData += subGamemodeName + " | ";
+                                gameData += `
+                                <div class="group-request-item-data-piece">${subGamemodeName}</div>
+                                `;
                             }
                         }
                         if (ranksListText !== "") {
-                            gameData += ranksListText + " | ";
-                        }
-                        gameData += `Mängijaid: ${registeredUsersList.length + 1}/${teamSize} | ${userName}`;
+                            gameData += `
+                                <div class="group-request-item-data-piece">${ranksListText}</div>
+                                `;                        }
                     }
                 })
             }

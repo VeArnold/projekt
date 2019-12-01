@@ -368,6 +368,9 @@
 .group-request-item-data-piece {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    vertical-align: middle;
+    padding: 0.3rem;
 }
 
 .groups-list-icon {
