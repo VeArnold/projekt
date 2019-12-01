@@ -233,7 +233,7 @@
     },
     {
       "name": "Exploding kittens",
-      "id": "explodingKittens",
+      "id": "exploding-kittens",
       "iconPath": "img/explodingkittens_gs.png",
       "selIconPath": "img/explodingkittens_c.png",
       "minTeamSize": 2,

@@ -116,71 +116,92 @@
     border-bottom: 3px solid #743c3d;
 }
 
-#csgoButton, #minecraftButton, #ck2Button, #lolButton, #board-games-button, #riskButton, #explodingKittensButton, #monopolyButton, #euroopaButton {
+/*#add-group-csgo-button, #add-group-minecraft-button, #add-group-ck2-button, #add-group-lol-button, #add-group-board-games-button, #add-group-risk-button, #add-group-exploding-kittens-button, #add-group-monopoly-button, #add-group-euroopa-button {*/
+.game-button {
     background-repeat: no-repeat;
     background-size: 180px 60px;
 }
 
-#csgoButton {
+#add-group-csgo-button,
+#groups-filters-csgo-button {
     background-image: url(../img/csgo_gs.png);
 }
-#csgoButton:hover, #csgoButton.selected-button {
+#add-group-csgo-button:hover, #add-group-csgo-button.selected-button,
+#groups-filters-csgo-button:hover, #groups-filters-csgo-button.selected-button {
     background-image: url(../img/csgo_c.png);
 }
-#minecraftButton {
+#add-group-minecraft-button,
+#groups-filters-minecraft-button {
     background-image: url(../img/minecraft_gs.png);
 }
-#minecraftButton:hover, #minecraftButton.selected-button {
+#add-group-minecraft-button:hover, #add-group-minecraft-button.selected-button,
+#groups-filters-minecraft-button:hover, #groups-filters-minecraft-button.selected-button {
     background-image: url(../img/minecraft_c.png);
 }
-#ck2Button {
+#add-group-ck2-button,
+#groups-filters-ck2-button {
     background-image: url(../img/crusader_kings_gs.png);
 }
-#ck2Button:hover, #ck2Button.selected-button {
+
+#add-group-ck2-button:hover, #add-group-ck2-button.selected-button,
+#groups-filters-ck2-button:hover, #groups-filters-ck2-button.selected-button {
     background-image: url(../img/crusader_kings_c.png);
 }
-#lolButton {
+#add-group-lol-button,
+#groups-filters-lol-button {
     background-image: url(../img/lol_gs.png);
 }
-#lolButton:hover, #lolButton.selected-button {
+#add-group-lol-button:hover, #add-group-lol-button.selected-button,
+#groups-filters-lol-button:hover, #groups-filters-lol-button.selected-button {
     background-image: url(../img/lol_c.png);
 }
-#board-games-button {
+
+#add-group-board-games-button,
+#groups-filters-board-games-button {
     background-image: url(../img/lauamängud_gs.png);
 }
-#board-games-button:hover, #board-games-button.selected-button {
+#add-group-board-games-button:hover, #add-group-board-games-button.selected-button,
+#groups-filters-board-games-button:hover, #groups-filters-board-games-button.selected-button {
     background-image: url(../img/lauamängud_c.png);
 }
 
-#riskButton {
+#add-group-risk-button,
+#groups-filters-risk-button {
     background-image: url(../img/risk_gs.png);
 }
 
-#riskButton:hover, #riskButton.selected-button {
+#add-group-risk-button:hover, #add-group-risk-button.selected-button,
+#groups-filters-risk-button:hover, #groups-filters-risk-button.selected-button {
     background-image: url(../img/risk_c.png);
 }
 
-#monopolyButton {
+#add-group-monopoly-button,
+#groups-filters-monopoly-button {
     background-image: url(../img/monopoly_gs.png);
 }
 
-#monopolyButton:hover, #monopolyButton.selected-button {
+#add-group-monopoly-button:hover, #add-group-monopoly-button.selected-button,
+#groups-filters-monopoly-button:hover, #groups-filters-monopoly-button.selected-button {
     background-image: url(../img/monopoly_c.png);
 }
 
-#explodingKittensButton {
+#add-group-exploding-kittens-button,
+#groups-filters-exploding-kittens-button {
     background-image: url(../img/explodingkittens_gs.png);
 }
 
-#explodingKittensButton:hover, #explodingKittensButton.selected-button {
+#add-group-exploding-kittens-button:hover, #add-group-exploding-kittens-button.selected-button,
+#groups-filters-exploding-kittens-button:hover, #groups-filters-exploding-kittens-button.selected-button {
     background-image: url(../img/explodingkittens_c.png);
 }
 
-#euroopaButton {
+#add-group-euroopa-button,
+#groups-filters-euroopa-button {
     background-image: url(../img/euroopa_gs.png);
 }
 
-#euroopaButton:hover, #euroopaButton.selected-button {
+#add-group-euroopa-button:hover, #add-group-euroopa-button.selected-button,
+#groups-filters-euroopa-button:hover, #groups-filters-euroopa-button.selected-button {
     background-image: url(../img/euroopa_c.png);
 }
 

@@ -7,7 +7,7 @@
     {"game":"csgo","gamemode":"comp","subGamemode":null,"ranks":["Gold Nova I","Silver Elite Master","Silver Elite","Gold Nova II"],"teamsize":5, "user": "Raul", "registeredUsers": ["Ants"]},
     {"game":"ck2","gamemode":null,"subGamemode":null,"ranks":[],"teamsize":12, "user": "Mark", "registeredUsers": []},
     {"game":"csgo","gamemode":"comp","subGamemode":null,"ranks":["The Global Elite"],"teamsize":5, "user": "Arnold", "registeredUsers": []},
-    {"game":"boardGame","boardGame":"explodingKittens","teamsize":9, "user": "Tanel", "registeredUsers": ["Eret"]},
+    {"game":"boardGame","boardGame":"exploding-kittens","teamsize":9, "user": "Tanel", "registeredUsers": ["Eret"]},
     {"game":"lol","gamemode":"summonersRift","subGamemode":"rankedMM","ranks":["Master","Grandmaster","Diamond I"],"teamsize":5, "user": "Kristina", "registeredUsers": ["Hendrik"]}
   ]
 }

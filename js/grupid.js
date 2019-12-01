@@ -113,42 +113,23 @@ $(function() {
         parent.innerHTML = html;
     }
 
-    function createListFilters() {
+    function createListFilters(data) {
         // Find parent
-        let parent = document.getElementById("groups-filters-container");
+        let parent = document.getElementById("groups-filters-buttons-container");
 
+        let html = getGameButtonsHTML(data, "groups-filters-", "groups-");
 
-    }
-
-    
-    function createGameButtons(data) {
-        // Find the parent for the game buttons
-        parent = document.getElementById("game-buttons-container");
-
-        // Generate the HTML for the buttons
-        let html = "";
-        data.videoGames.forEach(game => {
-            html += `
-                <div class="game-button game-select" id=\"${game.id + "Button"}\">
-                </div>
-                `;
-        });
-        html += `
-            <div class="game-button game-select" id=\"board-games-button\"></div>
-                `;
-
-        // Populate the parent with the new HTML
         parent.innerHTML = html;
 
         // Create eventlisteners
         data.videoGames.forEach(game => {
-            let button = document.getElementById(game.id + "Button");
+            let button = document.getElementById("groups-filters-" + game.id + "-button");
             // Gamemodes exist for this game
             if (game.gamemodes.length > 0) {
                 button.addEventListener("click", function () {
-                    selectedGame = game.id;
-                    imageButtonClicked(button, "game-select");
-                    createGameModeSelectors(game);
+                    imageButtonClicked(button, "groups-game-select");
+                    createGroupsListFiltersGamemodeSelectors(game);
+                    filterGroupsList(game.id);
                 }, false);
             }
             // Gamemodes don't exist, check if ranks exist
@@ -157,49 +138,150 @@ $(function() {
                 if ((game.ranks != null) && (game.ranks.length > 0) || (game.numericalRanks === true)) {
                     button.addEventListener("click", function () {
                         // Remove previous filters that might be on the page (since we start from lower than usual hierarchy).
-                        removeUnneccessaryFilters(true, true, true, true, true);
-
-                        selectedGame = game.id;
-                        imageButtonClicked(button, "game-select");
-                        createRankFilter(game);
+                        removeUnneccessaryFilters(true, true, true, true, true, true);
+                        imageButtonClicked(button, "groups-game-select");
+                        createAddGroupRankSelectors(game);
+                        filterGroupsList(game.id);
                     }, false);
                 } else {
-                    // Ranks don't exist, create team size filter instead
+                    // Ranks don't exist, filter the list right away
                     button.addEventListener("click", function () {
                         // Remove previous filters that might be on the page (since we start from lower than usual hierarchy).
-                        removeUnneccessaryFilters(true, true, true, true, true);
-
-                        selectedGame = game.id;
-                        imageButtonClicked(button, "game-select");
-                        createTeamSizeFilter(game);
+                        removeUnneccessaryFilters(true, true, true, true, true, true);
+                        imageButtonClicked(button, "groups-game-select");
+                        filterGroupsList(game.id);
                     }, false);
                 }
             }
         });
 
         // Add listener also for board games
-        let button = document.getElementById("board-games-button");
+        let button = document.getElementById("groups-filters-board-games-button");
+        button.addEventListener("click", function () {
+            selectedGame = "boardGame";
+            imageButtonClicked(button, "groups-game-select");
+            createGroupsListBoardGameList(data.boardGames);
+        }, false);
+    }
+    
+    function createAddGroupGameButtons(data) {
+        // Find the parent for the game buttons
+        parent = document.getElementById("game-buttons-container");
+
+        // Generate the HTML for the buttons
+        let html = getGameButtonsHTML(data, "add-group-");
+
+        // Populate the parent with the new HTML
+        parent.innerHTML = html;
+
+        // Create eventlisteners
+        data.videoGames.forEach(game => {
+            let button = document.getElementById("add-group-" + game.id + "-button");
+            // Gamemodes exist for this game
+            if (game.gamemodes.length > 0) {
+                button.addEventListener("click", function () {
+                    selectedGame = game.id;
+                    imageButtonClicked(button, "game-select");
+                    createAddGroupGamemodeSelectors(game);
+                }, false);
+            }
+            // Gamemodes don't exist, check if ranks exist
+            else {
+                // Ranks do exist, create rank filters next
+                if ((game.ranks != null) && (game.ranks.length > 0) || (game.numericalRanks === true)) {
+                    button.addEventListener("click", function () {
+                        // Remove previous filters that might be on the page (since we start from lower than usual hierarchy).
+                        removeUnneccessaryFilters(true, true, true, true, true, false);
+
+                        selectedGame = game.id;
+                        imageButtonClicked(button, "game-select");
+                        createAddGroupRankSelectors(game);
+                    }, false);
+                } else {
+                    // Ranks don't exist, create team size filter instead
+                    button.addEventListener("click", function () {
+                        // Remove previous filters that might be on the page (since we start from lower than usual hierarchy).
+                        removeUnneccessaryFilters(true, true, true, true, true, false);
+
+                        selectedGame = game.id;
+                        imageButtonClicked(button, "game-select");
+                        createAddGroupTeamSizeSelectors(game);
+                    }, false);
+                }
+            }
+        });
+
+        // Add listener also for board games
+        let button = document.getElementById("add-group-board-games-button");
         button.addEventListener("click", function () {
             selectedGame = "boardGame";
             imageButtonClicked(button, "game-select");
-            createBoardGameList(data.boardGames);
+            createAddGroupBoardGameList(data.boardGames);
         }, false);
     }
 
-    function createGameModeSelectors(game) {
+    function getGameButtonsHTML(data, idStart, groups) {
+        if (groups == null) {
+            groups = "";
+        }
+        let html;
+        data.videoGames.forEach(game => {
+            html += `
+                    <div class="game-button ${groups}game-select" id=\"${idStart + game.id + "-button"}\">
+                    </div>
+                    `;
+        });
+        html += `
+                <div class="game-button ${groups}game-select" id=\"${idStart}board-games-button\"></div>
+                    `;
+        return html;
+    }
+
+    function createGroupsListFiltersGamemodeSelectors(game) {
         // Remove previously created gamemode and lower filters
-        removeUnneccessaryFilters(gamemode = true, true, true, true, true);
+        removeUnneccessaryFilters(gamemode = true, true, true, true, true, true);
 
         // Find parent
-        var parent = document.getElementById("gamemodes-container");
+        var parent = document.getElementById("groups-filters-gamemode-container");
+
+        let html = getGamemodeHTML(game, "groups-filters-", "groups-");
+
+        // Append new HTML to parent
+        parent.innerHTML = html;
+
+        game.gamemodes.forEach(gamemode => {
+            let button = document.getElementById("groups-filters-" + game.id + "-" + gamemode.id + "-button");
+            // Subgamemodes don't exist
+            if (gamemode.subGamemodes == null || gamemode.subGamemodes.length === 0) {
+                // Ranks exist
+                if ((game.ranks.length > 0) || (game.numericalRanks === true)) {
+                    button.addEventListener("click", function () {
+                        buttonClicked(button, "groups-gamemode-select");
+                        createGroupsFiltersRankSelectors(game);
+                        filterGroupsList(gamemode.id);
+                    }, false)
+                }
+            }
+            // Subgamemodes exist as well
+            else {
+                button.addEventListener("click", function () {
+                    buttonClicked(button, "groups-gamemode-select");
+                    createGroupsFiltersSubGamemodeButtons(game, gamemode.subGamemodes);
+                    filterGroupsList(gamemode.id);
+                }, false)
+            }
+        })
+    }
+
+    function createAddGroupGamemodeSelectors(game) {
+        // Remove previously created gamemode and lower filters
+        removeUnneccessaryFilters(gamemode = true, true, true, true, true, false);
+
+        // Find parent
+        let parent = document.getElementById("gamemodes-container");
 
         // Create HTML with buttons
-        html = "";
-        game.gamemodes.forEach(gamemode => {
-            html += `
-                <input class="filter-button gamemode-select" id=\"add-group-${game.id + "-" + gamemode.id + "-button"}\" type=\"button\" value=\"${gamemode.name}"/>
-            `
-        });
+        let html = getGamemodeHTML(game, "add-group-");
 
         // Append new HTML to parent
         parent.innerHTML = html;
@@ -216,7 +298,7 @@ $(function() {
                         selectedGamemode = gamemode.id;
                         console.log(selectedGamemode);
                         buttonClicked(button, "gamemode-select");
-                        createRankFilter(game);
+                        createAddGroupRankSelectors(game);
                     }, false)
                 } else {
                     // Ranks don't exist
@@ -224,7 +306,7 @@ $(function() {
                         console.log("Listener clicked");
                         selectedGamemode = gamemode.id;
                         buttonClicked(button, "gamemode-select");
-                        createTeamSizeFilter(game);
+                        createAddGroupTeamSizeSelectors(game);
                     }, false)
                 }
             }
@@ -233,21 +315,80 @@ $(function() {
                 button.addEventListener("click", function () {
                     selectedGamemode = gamemode.id;
                     buttonClicked(button, "gamemode-select");
-                    createSubGamemodeFilter(game, gamemode.subGamemodes);
+                    createAddGroupSubGamemodeButtons(game, gamemode.subGamemodes);
                 }, false)
             }
         })
     }
 
-    function createRankFilter(game) {
+    function getGamemodeHTML(game, idStart, groups) {
+        if (groups == null) {
+            groups = "";
+        }
+        let html = "";
+        game.gamemodes.forEach(gamemode => {
+            html += `
+                <input class="filter-button ${groups}gamemode-select" id=\"${idStart + game.id + "-" + gamemode.id + "-button"}\" type=\"button\" value=\"${gamemode.name}"/>
+            `
+        });
+        return html;
+    }
+
+    function createGroupsFiltersRankSelectors(game) {
+        // Remove previously created rank filters
+        removeUnneccessaryFilters(gamemode = false, subGamemode = false, rank = true, teamsize = false, true, false);
+
+        // Find parent
+        let parent = document.getElementById("groups-filters-ranks-container");
+
+        // Create the HTML
+        let html = createRankSelectorHTML(game, "groups-filters-", "groups-");
+
+        parent.innerHTML = html;
+
+        // Add listeners for buttons to toggle state
+        let i = 0;
+        game.ranks.forEach(rank => {
+            let rankButton = document.getElementById("groups-filters-rank-" + game.id + i.toString() + "-button");
+            rankButton.addEventListener("click", function () {
+                selectRank(rank, rankButton);
+            });
+            i++;
+        });
+    }
+
+    function createAddGroupRankSelectors(game) {
         console.log("Now we're here");
         // Remove previously created rank and lower filters
-        removeUnneccessaryFilters(gamemode = false, subGamemode = false, rank = true, teamsize = true, true);
+        removeUnneccessaryFilters(gamemode = false, subGamemode = false, rank = true, teamsize = true, true, false);
 
         // Find parent
         let parent = document.getElementById("ranks-container");
 
         // Create HTML with buttons
+        let html = createRankSelectorHTML(game, "add-group-");
+
+        parent.innerHTML = html;
+
+        // Add listeners for buttons to toggle state
+        let i = 0;
+        game.ranks.forEach(rank => {
+            let rankButton = document.getElementById("add-group-rank-" + game.id + i.toString() + "-button");
+            console.log("add-group-rank" + game.id + i.toString() + "-button");
+            rankButton.addEventListener("click", function () {
+                addOrRemoveRank(rank, rankButton);
+            });
+            i++;
+        });
+
+        // Create teamsize filter along with rank filter
+        createAddGroupTeamSizeSelectors(game);
+    }
+
+    function createRankSelectorHTML(game, idStart, groups) {
+        if (groups == null) {
+            groups = "";
+        }
         let html = "";
         let i = 0;
 
@@ -257,30 +398,17 @@ $(function() {
                 html += `<div class="rank-col">`
             }
             html += `
-                <div class="rank-select check-box-button" id=\"${"add-group-rank" + game.id + i.toString() + "-button"}\">${rank}</div>
+                <div class="${groups}rank-select check-box-button" id=\"${idStart + "rank-" + game.id + i.toString() + "-button"}\">${rank}</div>
             `;
             if (i % rowsPerColumn === rowsPerColumn - 1) {
                 html += `</div>`
             }
             i++;
         });
-        parent.innerHTML = html;
-
-        // Add listeners for buttons to toggle state
-        i = 0;
-        game.ranks.forEach(rank => {
-            let rankButton = document.getElementById("add-group-rank" + game.id + i.toString() + "-button");
-            rankButton.addEventListener("click", function () {
-                addOrRemoveRank(rank, rankButton);
-            });
-            i++;
-        });
-
-        // Create teamsize filter along with rank filter
-        createTeamSizeFilter(game);
+        return html;
     }
 
-    function createTeamSizeFilter(game, boardGame) {
+    function createAddGroupTeamSizeSelectors(game, boardGame) {
         // Remove previously created teamsize  filters
         if ((game.gamemodes == null || game.gamemodes.length === 0) && (game.ranks == null || game.ranks.length === 0) && game.numericalRanks === false) {
             // In case we don't have any other data than team size, we need to remove all modes (otherwise boardgames will stay on the page)
@@ -344,7 +472,33 @@ $(function() {
         createSubmitButton();
     }
 
-    function createSubGamemodeFilter(game, subGamemodes) {
+    function createGroupsFiltersSubGamemodeButtons(game, subGamemodes) {
+        console.log("Gotem");
+        // Remove previously created subgamemode and lower filters
+        removeUnneccessaryFilters(false, true, true, true, true);
+
+        // Find parent
+        let parent = document.getElementById("groups-filters-sub-gamemode-container");
+
+        // Crate HTML
+        let html = createSubGamemodesHTML(game, subGamemodes, "groups-filters-", "groups-");
+
+        parent.innerHTML = html;
+
+        // Create eventlisteners
+        subGamemodes.forEach(subGamemode => {
+            let button = document.getElementById("groups-filters-" + game.id + gamemode.id + subGamemode.id + "-button");
+            if ((game.ranks.length > 0) || (game.numericalRanks === true)) {
+                button.addEventListener("click", function () {
+                    buttonClicked(button, "groups-sub-gamemode-select");
+                    createGroupsFiltersRankSelectors(game);
+                    filterGroupsList(subGamemode.id);
+                }, false)
+            }
+        });
+    }
+
+    function createAddGroupSubGamemodeButtons(game, subGamemodes) {
         // Remove previously created subgamemode and lower filters
         removeUnneccessaryFilters(false, true, true, true, true);
 
@@ -352,36 +506,68 @@ $(function() {
         let parent = document.getElementById("sub-gamemodes-container");
 
         // Create HTML with buttons
-        let html = "";
-        subGamemodes.forEach(subGamemode => {
-            html += `
-                <input class="filter-button sub-gamemode-select" id=\"${"add-group-game.id" + gamemode.id + subGamemode.id + "-button"}\" type=\"button\" value=\"${subGamemode.name}"/>
-            `
-        });
+        let html = createSubGamemodesHTML(game, subGamemodes, "add-group-");
 
         // Append new HTML to parent
         parent.innerHTML = html;
 
         // Create eventlisteners
         subGamemodes.forEach(subGamemode => {
-            let button = document.getElementById("add-group-game.id" + gamemode.id + subGamemode.id + "-button");
+            let button = document.getElementById("add-group-" + game.id + gamemode.id + subGamemode.id + "-button");
             if ((game.ranks.length > 0) || (game.numericalRanks === true)) {
                 button.addEventListener("click", function () {
                     selectedSubGamemode = subGamemode.id;
                     buttonClicked(button, "sub-gamemode-select");
-                    createRankFilter(game);
+                    createAddGroupRankSelectors(game);
                 }, false)
             } else {
                 button.addEventListener("click", function () {
                     selectedSubGamemode = subGamemode.id;
                     buttonClicked(button, "sub-gamemode-select");
-                    createTeamSizeFilter(game);
+                    createAddGroupTeamSizeSelectors(game);
                 }, false)
             }
+        });
+    }
+
+    function createSubGamemodesHTML(game, subGamemodes, idStart, groups) {
+        if (groups == null) {
+            groups = "";
+        }
+        let html = "";
+        subGamemodes.forEach(subGamemode => {
+            html += `
+                <input class="filter-button ${groups}sub-gamemode-select" id=\"${idStart + game.id + gamemode.id + subGamemode.id + "-button"}\" type=\"button\" value=\"${subGamemode.name}"/>
+            `
+        });
+
+        return html;
+    }
+
+    function createGroupsListBoardGameList(boardGames) {
+        // Remove all videogame filters
+        removeUnneccessaryFilters(true, true, true, true, true, true);
+
+        // Find parent
+        let parent = document.getElementById("groups-filters-board-game-container");
+
+        // Create the new HTML
+        let html = createBoardGameButtonsHTML(boardGames, "groups-filters-", "groups-");
+
+        // Append the html
+        parent.innerHTML = html;
+
+        // Create eventlisteners
+        boardGames.forEach(boardGame => {
+            let button = document.getElementById("groups-filters-" + boardGame.id + "-button");
+            button.addEventListener("click", function () {
+                imageButtonClicked(button, "groups-board-game-select");
+                filterGroupsList(boardGame.id);
+            })
         })
     }
 
-    function createBoardGameList(boardGames) {
+    function createAddGroupBoardGameList(boardGames) {
         // Remove all videogame filters
         removeUnneccessaryFilters(true, true, true, true, true);
 
@@ -389,25 +575,35 @@ $(function() {
         let parent = document.getElementById("board-game-container");
 
         // Create the new HTML
-        let html = "";
-        boardGames.forEach(boardGame => {
-            html += `
-                <div class="game-button board-game-select" id="${boardGame.id + "Button"}"></div>
-                `
-        });
+        let html = createBoardGameButtonsHTML(boardGames, "add-group-");
 
         // Append the html
         parent.innerHTML = html;
 
         // Create eventlisteners
         boardGames.forEach(boardGame => {
-            let button = document.getElementById(boardGame.id + "Button");
+            let button = document.getElementById("add-group-" + boardGame.id + "-button");
             button.addEventListener("click", function () {
                 selectedBoardGame = boardGame.id;
                 imageButtonClicked(button, "board-game-select");
-                createTeamSizeFilter(boardGame);
+                createAddGroupTeamSizeSelectors(boardGame);
             })
         })
+    }
+
+    function createBoardGameButtonsHTML(boardGames, idStart, groups) {
+        if (groups == null) {
+            groups = "";
+        }
+
+        let html = "";
+        boardGames.forEach(boardGame => {
+            html += `
+                <div class="game-button ${groups}board-game-select" id="${idStart + boardGame.id + "-button"}"></div>
+                `
+        });
+        return html;
+
     }
 
     function createSubmitButton() {
@@ -470,6 +666,10 @@ $(function() {
         }
     }
 
+    function filterGroupsList(id) {
+        console.log(id);
+    }
+
     // TODO: Do
     function writeToFile(filename, data) {
         let data_serialized = JSON.stringify(data);
@@ -484,6 +684,23 @@ $(function() {
         } else {
             selectedRanks.add(rank);
         }
+    }
+
+    function selectRank(rank, button) {
+        let buttons = document.getElementsByClassName("groups-rank-select");
+        for (let i = 0; i<buttons.length; i++) {
+            console.log(buttons[i]);
+            if (buttons[i] !== button) {
+                console.log(button);
+                console.log(buttons[i]);
+                buttons[i].classList.remove("selected-filter-button");
+            }
+        }
+        if (!button.classList.contains("selected-filter-button")) {
+            button.classList.add("selected-filter-button");
+        }
+        filterGroupsList(rank);
+
     }
 
     function imageButtonClicked(button, classname) {
@@ -503,27 +720,31 @@ $(function() {
         }
     }
 
-    function removeUnneccessaryFilters(gamemode, subGamemode, rank, teamSize, boardGame) {
+    function removeUnneccessaryFilters(gamemode, subGamemode, rank, teamSize, boardGame, groupsFilter) {
+        let groupsPrefix = "";
+        if (groupsFilter) {
+            groupsPrefix = "groups-";
+        }
         if (gamemode) {
-            removeFilters("gamemode-select");
+            removeFilters(groupsPrefix + "gamemode-select");
             selectedGamemode = null;
         }
         if (subGamemode) {
-            removeFilters("sub-gamemode-select");
+            removeFilters(groupsPrefix + "sub-gamemode-select");
             selectedSubGamemode = null;
         }
         if (rank) {
-            removeFilters("rank-select");
+            removeFilters(groupsPrefix + "rank-select");
             selectedRanks.clear();
         }
         if (teamSize) {
-            removeFilters("team-size-select");
+            removeFilters(groupsPrefix + "team-size-select");
             removeFilters("submit-group-button");
             removeFilters("reset-selections-button");
             selectedTeamSize = null;
         }
         if (boardGame) {
-            removeFilters("board-game-select");
+            removeFilters(groupsPrefix + "board-game-select");
             selectedBoardGame = null;
         }
     }
@@ -541,7 +762,8 @@ $(function() {
             .then(response => response.json())
             .then(data => {
                 gameConfigData = data;
-                createGameButtons(data);
+                createAddGroupGameButtons(data);
+                createListFilters(data);
             })
     }
 
