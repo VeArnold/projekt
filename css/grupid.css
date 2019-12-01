@@ -85,10 +85,13 @@
 .buttons-container {
     display: flex;
     flex-direction: row;
-    justify-content: center;
     overflow-x: auto;
     max-width: 900px;
     margin: 0 auto;
+}
+
+.filter-container {
+    justify-content: center;
 }
 
 .buttons-container::-webkit-scrollbar {
@@ -108,7 +111,7 @@
 .game-button {
     min-width: 180px;
     min-height: 60px;
-    border-bottom: none;
+    border-bottom: 3px solid transparent;
     cursor: pointer;
 }
 
@@ -158,48 +161,41 @@
 
 #add-group-board-games-button,
 #groups-filters-board-games-button {
-    background-image: url(../img/lauamängud_gs.png);
+    background-image: url(../img/lauamangud_gs.png);
 }
 #add-group-board-games-button:hover, #add-group-board-games-button.selected-button,
 #groups-filters-board-games-button:hover, #groups-filters-board-games-button.selected-button {
-    background-image: url(../img/lauamängud_c.png);
+    background-image: url(../img/lauamangud_c.png);
 }
 
 #add-group-risk-button,
 #groups-filters-risk-button {
     background-image: url(../img/risk_gs.png);
 }
-
 #add-group-risk-button:hover, #add-group-risk-button.selected-button,
 #groups-filters-risk-button:hover, #groups-filters-risk-button.selected-button {
     background-image: url(../img/risk_c.png);
 }
-
 #add-group-monopoly-button,
 #groups-filters-monopoly-button {
     background-image: url(../img/monopoly_gs.png);
 }
-
 #add-group-monopoly-button:hover, #add-group-monopoly-button.selected-button,
 #groups-filters-monopoly-button:hover, #groups-filters-monopoly-button.selected-button {
     background-image: url(../img/monopoly_c.png);
 }
-
 #add-group-exploding-kittens-button,
 #groups-filters-exploding-kittens-button {
     background-image: url(../img/explodingkittens_gs.png);
 }
-
 #add-group-exploding-kittens-button:hover, #add-group-exploding-kittens-button.selected-button,
 #groups-filters-exploding-kittens-button:hover, #groups-filters-exploding-kittens-button.selected-button {
     background-image: url(../img/explodingkittens_c.png);
 }
-
 #add-group-euroopa-button,
 #groups-filters-euroopa-button {
     background-image: url(../img/euroopa_gs.png);
 }
-
 #add-group-euroopa-button:hover, #add-group-euroopa-button.selected-button,
 #groups-filters-euroopa-button:hover, #groups-filters-euroopa-button.selected-button {
     background-image: url(../img/euroopa_c.png);
@@ -361,4 +357,18 @@
 .rank-filter-column {
     display: flex;
     flex-direction: column;
+}
+
+@media only screen and (max-width: 600px) {
+    .groups {
+        flex-direction: column;
+    }
+
+    .groups-list-container {
+        width: 100%;
+    }
+
+    .groups-filters-container {
+        width: 100%;
+    }
 }
