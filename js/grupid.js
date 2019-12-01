@@ -44,7 +44,7 @@ $(function() {
             let gameId = group.game;
             let gamemodeId = group.gamemode == null ? null : group.gamemode;
             let subGamemodeId = group.subGamemode == null ? null : group.subGamemode;
-            let ranksList = (group.ranks == null || group.ranks.length > 0) ? null : group.ranks;
+            let ranksList = (group.ranks == null || group.ranks.length === 0) ? null : group.ranks;
             let boardGameId = group.boardGame == null ? null : group.boardGame;
             let teamSize = group.teamsize == null ? null : group.teamsize;
             let userName = group.user == null ? null : group.user;
@@ -54,12 +54,12 @@ $(function() {
             let gameData = "";
             let gameInfo = "";
             let ranksListText = "";
-
+            let imgUrl = "";
             if (gameId === "boardGame") {
-
                 if (boardGameId && teamSize && userName) {
                     gameConfigData.boardGames.forEach(boardGame => {
                         if (boardGame.id === boardGameId) {
+                            imgUrl = boardGame.selIconPath;
                             gameInfo = ` data-game="boardGame" data-board-game="${boardGame.id}"`;
                             gameName = boardGame.name;
                             gameData = `Mängijaid: ${registeredUsersList.length + 1}/${teamSize} | ${userName}`;
@@ -69,6 +69,7 @@ $(function() {
             } else {
                 gameConfigData.videoGames.forEach(videoGame => {
                     if (videoGame.id === gameId) {
+                        imgUrl = videoGame.selIconPath;
                         gameInfo = ` data-game="${videoGame.id}" data-board-game=${null}`;
                         gameName = videoGame.name;
                         let gamemodeName = "";
@@ -109,7 +110,7 @@ $(function() {
             html += `
                 <div class="group-request-item">
                     <div class="group-request-item-game"${gameInfo}>
-                        ${gameName}
+                        <img class="groups-list-icon" src="${imgUrl}" alt="${gameName}"/>
                     </div>
                     <div class="group-request-item-data" data-gamemode="${gamemodeId}" data-subGamemode="${subGamemodeId}" data-ranks="${ranksListText}">
                         ${gameData}
@@ -255,10 +256,10 @@ $(function() {
         var parent = document.getElementById("groups-filters-gamemode-container");
 
         let html = getGamemodeHTML(game, "groups-filters-", "groups-");
-
         // Append new HTML to parent
         parent.innerHTML = html;
 
+        // Add listeners
         game.gamemodes.forEach(gamemode => {
             let button = document.getElementById("groups-filters-" + game.id + "-" + gamemode.id + "-button");
             // Subgamemodes don't exist
@@ -267,7 +268,14 @@ $(function() {
                 if ((game.ranks.length > 0) || (game.numericalRanks === true)) {
                     button.addEventListener("click", function () {
                         buttonClicked(button, "groups-gamemode-select");
-                        createGroupsFiltersRankSelectors(game);
+                        createGroupsFiltersRankSelectors(game, gamemode, null);
+                        filterGroupsList(game.id, gamemode.id, null, null, null);
+                    }, false)
+                }
+                // Ranks don't exist
+                else {
+                    button.addEventListener("click", function () {
+                        buttonClicked(button, "groups-gamemode-select");
                         filterGroupsList(game.id, gamemode.id, null, null, null);
                     }, false)
                 }
@@ -276,7 +284,7 @@ $(function() {
             else {
                 button.addEventListener("click", function () {
                     buttonClicked(button, "groups-gamemode-select");
-                    createGroupsFiltersSubGamemodeButtons(game, gamemode.subGamemodes);
+                    createGroupsFiltersSubGamemodeButtons(game, gamemode, gamemode.subGamemodes);
                     filterGroupsList(game.id, gamemode.id, null, null, null);
                 }, false)
             }
@@ -297,23 +305,19 @@ $(function() {
         parent.innerHTML = html;
         // Create eventlisteners
         game.gamemodes.forEach(gamemode => {
-            console.log(gamemode.name);
             let button = document.getElementById("add-group-" + game.id + "-" + gamemode.id + "-button");
             // Subgamemodes don't exist
             if (gamemode.subGamemodes == null || gamemode.subGamemodes.length === 0) {
                 // Ranks exist
                 if ((game.ranks.length > 0) || (game.numericalRanks === true)) {
                     button.addEventListener("click", function () {
-                        console.log("Listener clicked");
                         selectedGamemode = gamemode.id;
-                        console.log(selectedGamemode);
                         buttonClicked(button, "gamemode-select");
                         createAddGroupRankSelectors(game);
                     }, false)
                 } else {
                     // Ranks don't exist
                     button.addEventListener("click", function () {
-                        console.log("Listener clicked");
                         selectedGamemode = gamemode.id;
                         buttonClicked(button, "gamemode-select");
                         createAddGroupTeamSizeSelectors(game);
@@ -325,7 +329,7 @@ $(function() {
                 button.addEventListener("click", function () {
                     selectedGamemode = gamemode.id;
                     buttonClicked(button, "gamemode-select");
-                    createAddGroupSubGamemodeButtons(game, gamemode.subGamemodes);
+                    createAddGroupSubGamemodeButtons(game, gamemode, gamemode.subGamemodes);
                 }, false)
             }
         })
@@ -344,9 +348,9 @@ $(function() {
         return html;
     }
 
-    function createGroupsFiltersRankSelectors(game) {
+    function createGroupsFiltersRankSelectors(game, gamemode, subGamemode) {
         // Remove previously created rank filters
-        removeUnneccessaryFilters(gamemode = false, subGamemode = false, rank = true, teamsize = false, true, false);
+        removeUnneccessaryFilters( false, false, true, false, true, false);
 
         // Find parent
         let parent = document.getElementById("groups-filters-ranks-container");
@@ -361,14 +365,22 @@ $(function() {
         game.ranks.forEach(rank => {
             let rankButton = document.getElementById("groups-filters-rank-" + game.id + i.toString() + "-button");
             rankButton.addEventListener("click", function () {
-                selectRank(rank, rankButton);
+                let gamemodeId = null;
+                let subGamemodeId = null;
+                if (gamemode) {
+                    gamemodeId = gamemode.id;
+                }
+                if (subGamemode) {
+                    subGamemodeId = subGamemode.id;
+                }
+
+                selectRank(rank, rankButton, game.id, gamemodeId, subGamemodeId);
             });
             i++;
         });
     }
 
     function createAddGroupRankSelectors(game) {
-        console.log("Now we're here");
         // Remove previously created rank and lower filters
         removeUnneccessaryFilters(gamemode = false, subGamemode = false, rank = true, teamsize = true, true, false);
 
@@ -384,7 +396,6 @@ $(function() {
         let i = 0;
         game.ranks.forEach(rank => {
             let rankButton = document.getElementById("add-group-rank-" + game.id + i.toString() + "-button");
-            console.log("add-group-rank" + game.id + i.toString() + "-button");
             rankButton.addEventListener("click", function () {
                 addOrRemoveRank(rank, rankButton);
             });
@@ -482,7 +493,7 @@ $(function() {
         createSubmitButton();
     }
 
-    function createGroupsFiltersSubGamemodeButtons(game, subGamemodes) {
+    function createGroupsFiltersSubGamemodeButtons(game, gamemode, subGamemodes) {
         // Remove previously created subgamemode and lower filters
         removeUnneccessaryFilters(false, true, true, true, true);
 
@@ -490,7 +501,7 @@ $(function() {
         let parent = document.getElementById("groups-filters-sub-gamemode-container");
 
         // Crate HTML
-        let html = createSubGamemodesHTML(game, subGamemodes, "groups-filters-", "groups-");
+        let html = createSubGamemodesHTML(game, gamemode, subGamemodes, "groups-filters-", "groups-");
 
         parent.innerHTML = html;
 
@@ -500,14 +511,14 @@ $(function() {
             if ((game.ranks.length > 0) || (game.numericalRanks === true)) {
                 button.addEventListener("click", function () {
                     buttonClicked(button, "groups-sub-gamemode-select");
-                    createGroupsFiltersRankSelectors(game);
+                    createGroupsFiltersRankSelectors(game, gamemode, subGamemode);
                     filterGroupsList(game.id, gamemode.id, subGamemode.id, null, null);
                 }, false)
             }
         });
     }
 
-    function createAddGroupSubGamemodeButtons(game, subGamemodes) {
+    function createAddGroupSubGamemodeButtons(game, gamemode, subGamemodes) {
         // Remove previously created subgamemode and lower filters
         removeUnneccessaryFilters(false, true, true, true, true);
 
@@ -515,7 +526,7 @@ $(function() {
         let parent = document.getElementById("sub-gamemodes-container");
 
         // Create HTML with buttons
-        let html = createSubGamemodesHTML(game, subGamemodes, "add-group-");
+        let html = createSubGamemodesHTML(game, gamemode, subGamemodes, "add-group-");
 
         // Append new HTML to parent
         parent.innerHTML = html;
@@ -539,7 +550,7 @@ $(function() {
         });
     }
 
-    function createSubGamemodesHTML(game, subGamemodes, idStart, groups) {
+    function createSubGamemodesHTML(game, gamemode, subGamemodes, idStart, groups) {
         if (groups == null) {
             groups = "";
         }
@@ -621,8 +632,8 @@ $(function() {
 
         // Create the html for the button
         let html = `
-                <input class="submit-group-button filter-button" id="submit-game-request" type="button" value="Submit"/>
-                <input class="reset-selections-button filter-button" id="reset-add-game-selections" type="button" value="Reset filters"/>
+                <input class="submit-group-button filter-button" id="submit-game-request" type="button" value="Saada"/>
+                <input class="reset-selections-button filter-button" id="reset-add-game-selections" type="button" value="Tühista valikud"/>
         `;
 
         parent.innerHTML = html;
@@ -676,6 +687,7 @@ $(function() {
     }
 
     function filterGroupsList(game, gamemode, subGamemode, rank, boardGame) {
+        let listItemHidden = "list-item-hidden";
         if (boardGame != null || game != null) {
             // Get all list game elements
             let listEntries = document.getElementsByClassName("group-request-item-game");
@@ -685,24 +697,24 @@ $(function() {
                     let gameName = listEntries[i].attributes.getNamedItem("data-board-game").value;
                     let parent = listEntries[i].parentElement;
                     if (gameName !== boardGame) {
-                        if (!parent.classList.contains("list-item-hidden")) {
-                            parent.classList.add("list-item-hidden");
+                        if (!parent.classList.contains(listItemHidden)) {
+                            parent.classList.add(listItemHidden);
                         }
                     }
                     else {
-                        parent.classList.remove("list-item-hidden");
+                        parent.classList.remove(listItemHidden);
                     }
                 }
                 else if (game) {
                     let gameName = listEntries[i].attributes.getNamedItem("data-game").value;
                     let parent = listEntries[i].parentElement;
                     if (gameName !== game) {
-                        if (!parent.classList.contains("list-item-hidden")) {
-                            parent.classList.add("list-item-hidden");
+                        if (!parent.classList.contains(listItemHidden)) {
+                            parent.classList.add(listItemHidden);
                         }
                     }
                     else {
-                        parent.classList.remove("list-item-hidden");
+                        parent.classList.remove(listItemHidden);
                     }
                 }
             }
@@ -714,11 +726,11 @@ $(function() {
             for (let i = 0; i < listEntries.length; i++) {
                 let gamemodeId = listEntries[i].attributes.getNamedItem("data-gamemode").value;
                 let parent = listEntries[i].parentElement;
-                if (!parent.classList.contains("list-item-hidden")) {
+                if (!parent.classList.contains(listItemHidden)) {
                     if (gamemodeId !== gamemode) {
-                        parent.classList.add("list-item-hidden");
+                        parent.classList.add(listItemHidden);
                     } else {
-                        parent.classList.remove("list-item-hidden");
+                        parent.classList.remove(listItemHidden);
                     }
                 }
             }
@@ -730,36 +742,37 @@ $(function() {
             for (let i = 0; i < listEntries.length; i++) {
                 let subGamemodeId = listEntries[i].attributes.getNamedItem("data-subgamemode").value;
                 let parent = listEntries[i].parentElement;
-                if (!parent.classList.contains("list-item-hidden")) {
+                if (!parent.classList.contains(listItemHidden)) {
                     if (subGamemodeId !== subGamemode) {
-                        parent.classList.add("list-item-hidden");
+                        parent.classList.add(listItemHidden);
                     }
                     else {
-                        parent.classList.remove("list-item-hidden");
+                        parent.classList.remove(listItemHidden);
                     }
                 }
             }
         }
         if (rank != null) {
-            // // Get all list data elements
-            // let listEntries = document.getElementsByClassName("group-request-item-data");
-            // for (let i = 0; i < listEntries.length; i++) {
-            //     // Check if entry has ranks info
-            //     let ranksList = listEntries[i].attributes.getNamedItem("data-ranks").value;
-            //     let parent = listEntries[i].parentElement;
-            //     if (ranksList != null && ranksList.length === 0) {
-            //         let ranksArray = convertStringListToArray(ranksList);
-            //         if (ranksArray.include(rank)) {
-            //             parent.classList.remove("list")
-            //         }
-            //     }
-            //     else {
-            //         // Hide parent
-            //         if (!parent.classList.contains("list-item-hidden")) {
-            //             parent.classList.add("list-item-hidden");
-            //         }
-            //     }
-            // }
+            // Get all list data elements
+            let listEntries = document.getElementsByClassName("group-request-item-data");
+            for (let i = 0; i < listEntries.length; i++) {
+                let parent = listEntries[i].parentElement;
+                if (!parent.classList.contains(listItemHidden)) {
+                    // Check if entry has ranks info
+                    let ranksList = listEntries[i].attributes.getNamedItem("data-ranks").value;
+                    if (ranksList != null && ranksList.length > 0) {
+                        let ranksArray = convertStringListToArray(ranksList);
+                        if (ranksArray.includes(rank)) {
+                            parent.classList.remove(listItemHidden)
+                        }
+                        else {
+                            if (!parent.classList.contains(listItemHidden)) {
+                                parent.classList.add(listItemHidden);
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 
@@ -783,7 +796,7 @@ $(function() {
         }
     }
 
-    function selectRank(rank, button) {
+    function selectRank(rank, button, gameId, gamemodeId, subGamemodeId) {
         let buttons = document.getElementsByClassName("groups-rank-select");
         for (let i = 0; i<buttons.length; i++) {
             if (buttons[i] !== button) {
@@ -793,7 +806,7 @@ $(function() {
         if (!button.classList.contains("selected-filter-button")) {
             button.classList.add("selected-filter-button");
         }
-        filterGroupsList(null, null, null, rank, null);
+        filterGroupsList(gameId, gamemodeId, subGamemodeId, rank, null);
 
     }
 

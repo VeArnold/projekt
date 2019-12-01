@@ -318,12 +318,14 @@
     flex-direction: row;
     background: #743c3d;
     color: white;
-    padding: 0.3rem 0.8rem 0.3rem;
+    margin: 0;
+    padding: 0;
 }
 
-.group-request-item > div {
+.group-request-item-data {
     display: flex;
     flex-direction: column;
+    padding: 0.3rem 0.8rem 0.3rem;
 }
 
 .group-request-item-game .groupRequestItemData {
@@ -336,6 +338,13 @@
 
 .group-request-item-game {
     color: black;
+}
+
+.groups-list-icon {
+    height: 60px;
+    margin-top: 0;
+    margin-bottom: 0;
+    width: auto;
 }
 
 .left-aligned {
