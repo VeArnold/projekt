@@ -145,21 +145,18 @@ input[type="button"]:hover {
 }
 
 .navbar-steamicon {
-    margin: 0;
-    width: 2rem;
-    background: #202525;
-    background-image: url("../img/steamicon.png");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 60%;
+    width: 1rem;
+    font-size: 2.5rem;
+    color: #743c3d;
+    padding-left: 0.5rem;
 }
 
 .navbar-steamicon:hover {
-    background: #2E3334;
-    background-image: url("../img/steamicon_highlight.png");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 60%;
+    width: 1rem;
+    font-size: 2.5rem;
+    color: #913E3F;
+    padding-left: 0.5rem;
+    cursor: pointer;
 }
 
 .navbar-selected {
