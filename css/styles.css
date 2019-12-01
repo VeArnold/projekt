@@ -258,7 +258,7 @@ input[type="button"]:hover, button:hover {
     padding-left: 77px;
 }
 /** RESPONSIVE **/
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 900px) {
     .page {
         padding-left: 20px;
         padding-right: 20px;
