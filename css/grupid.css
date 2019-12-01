@@ -4,7 +4,7 @@
     height: 90%;
     position: fixed;
     text-align: center;
-    top: 3.5rem;
+    top: 4rem;
     left: 0;
     width: 100%;
     z-index: 10000;
@@ -446,15 +446,6 @@
         margin: 0;
         justify-content: center;
     }
-
-    .groups-list-title {
-        font-size: 18px;
-        margin-top: 8px;
-    }
-
-    .groups-list-header .filter-button {
-        font-size: 10px;
-    }
 }
 
 @media only screen and (max-width: 1000px) {
@@ -468,5 +459,21 @@
     .groups-list-icon {
         width: 100%;
         height: auto;
+    }
+    .groups-list-title {
+        font-size: 18px;
+        margin-top: 8px;
+    }
+
+    .groups-list-header .filter-button {
+        font-size: 10px;
+    }
+
+    .modal {
+        height: 75%;
+    }
+
+    #gamemodes-container, #sub-gamemodes-container {
+        flex-direction: column;
     }
 }
