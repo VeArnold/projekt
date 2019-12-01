@@ -325,6 +325,11 @@
     padding: 0.3rem 0.8rem 0.3rem;
 }
 
+.group-request-item > div {
+    display: flex;
+    flex-direction: column;
+}
+
 .group-request-item-game .groupRequestItemData {
     display: flex;
     flex-direction: row;
@@ -335,6 +340,14 @@
 
 .group-request-item-game {
     color: black;
+}
+
+.left-aligned {
+    margin-left: auto;
+}
+
+.list-item-hidden {
+    display: none;
 }
 
 /* List filters */

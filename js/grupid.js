@@ -52,10 +52,15 @@ $(function() {
 
             let gameName = "";
             let gameData = "";
+            let gameInfo = "";
+            let ranksListText = "";
+
             if (gameId === "boardGame") {
+
                 if (boardGameId && teamSize && userName) {
                     gameConfigData.boardGames.forEach(boardGame => {
                         if (boardGame.id === boardGameId) {
+                            gameInfo = ` data-game="boardGame" data-board-game="${boardGame.id}"`;
                             gameName = boardGame.name;
                             gameData = `Mängijaid: ${registeredUsersList.length + 1}/${teamSize} | ${userName}`;
                         }
@@ -64,10 +69,10 @@ $(function() {
             } else {
                 gameConfigData.videoGames.forEach(videoGame => {
                     if (videoGame.id === gameId) {
+                        gameInfo = ` data-game="${videoGame.id}" data-board-game=${null}`;
                         gameName = videoGame.name;
                         let gamemodeName = "";
                         let subGamemodeName = "";
-                        let ranksListText = "";
                         if (gamemodeId) {
                             videoGame.gamemodes.forEach(gamemode => {
                                 if (gamemode.id === gamemodeId) {
@@ -98,15 +103,20 @@ $(function() {
                     }
                 })
             }
+            if (ranksListText === "") {
+                ranksListText = null;
+            }
             html += `
                 <div class="group-request-item">
-                    <div class="group-request-item-game">${gameName}</div>
-                    <div class="group-request-item-data">
+                    <div class="group-request-item-game"${gameInfo}>
+                        ${gameName}
+                    </div>
+                    <div class="group-request-item-data" data-gamemode="${gamemodeId}" data-subGamemode="${subGamemodeId}" data-ranks="${ranksListText}">
                         ${gameData}
                     </div>
-                    <input class="filter-button" type="button" value="Join team"/>
+                    <div class="filter-button left-aligned">Liitu</div>
                 </div>
-            `
+            `;
 
         });
 
@@ -129,7 +139,7 @@ $(function() {
                 button.addEventListener("click", function () {
                     imageButtonClicked(button, "groups-game-select");
                     createGroupsListFiltersGamemodeSelectors(game);
-                    filterGroupsList(game.id);
+                    filterGroupsList(game.id, null, null, null, null);
                 }, false);
             }
             // Gamemodes don't exist, check if ranks exist
@@ -141,7 +151,7 @@ $(function() {
                         removeUnneccessaryFilters(true, true, true, true, true, true);
                         imageButtonClicked(button, "groups-game-select");
                         createAddGroupRankSelectors(game);
-                        filterGroupsList(game.id);
+                        filterGroupsList(game.id, null, null, null, null);
                     }, false);
                 } else {
                     // Ranks don't exist, filter the list right away
@@ -149,7 +159,7 @@ $(function() {
                         // Remove previous filters that might be on the page (since we start from lower than usual hierarchy).
                         removeUnneccessaryFilters(true, true, true, true, true, true);
                         imageButtonClicked(button, "groups-game-select");
-                        filterGroupsList(game.id);
+                        filterGroupsList(game.id, null, null, null, null);
                     }, false);
                 }
             }
@@ -158,9 +168,9 @@ $(function() {
         // Add listener also for board games
         let button = document.getElementById("groups-filters-board-games-button");
         button.addEventListener("click", function () {
-            selectedGame = "boardGame";
             imageButtonClicked(button, "groups-game-select");
             createGroupsListBoardGameList(data.boardGames);
+            filterGroupsList("boardGame", null, null, null, null);
         }, false);
     }
     
@@ -224,7 +234,7 @@ $(function() {
         if (groups == null) {
             groups = "";
         }
-        let html;
+        let html = "";
         data.videoGames.forEach(game => {
             html += `
                     <div class="game-button ${groups}game-select" id=\"${idStart + game.id + "-button"}\">
@@ -258,7 +268,7 @@ $(function() {
                     button.addEventListener("click", function () {
                         buttonClicked(button, "groups-gamemode-select");
                         createGroupsFiltersRankSelectors(game);
-                        filterGroupsList(gamemode.id);
+                        filterGroupsList(game.id, gamemode.id, null, null, null);
                     }, false)
                 }
             }
@@ -267,7 +277,7 @@ $(function() {
                 button.addEventListener("click", function () {
                     buttonClicked(button, "groups-gamemode-select");
                     createGroupsFiltersSubGamemodeButtons(game, gamemode.subGamemodes);
-                    filterGroupsList(gamemode.id);
+                    filterGroupsList(game.id, gamemode.id, null, null, null);
                 }, false)
             }
         })
@@ -328,7 +338,7 @@ $(function() {
         let html = "";
         game.gamemodes.forEach(gamemode => {
             html += `
-                <input class="filter-button ${groups}gamemode-select" id=\"${idStart + game.id + "-" + gamemode.id + "-button"}\" type=\"button\" value=\"${gamemode.name}"/>
+                <div class="filter-button ${groups}gamemode-select" id=\"${idStart + game.id + "-" + gamemode.id + "-button"}\" >${gamemode.name}</div>
             `
         });
         return html;
@@ -473,7 +483,6 @@ $(function() {
     }
 
     function createGroupsFiltersSubGamemodeButtons(game, subGamemodes) {
-        console.log("Gotem");
         // Remove previously created subgamemode and lower filters
         removeUnneccessaryFilters(false, true, true, true, true);
 
@@ -492,7 +501,7 @@ $(function() {
                 button.addEventListener("click", function () {
                     buttonClicked(button, "groups-sub-gamemode-select");
                     createGroupsFiltersRankSelectors(game);
-                    filterGroupsList(subGamemode.id);
+                    filterGroupsList(game.id, gamemode.id, subGamemode.id, null, null);
                 }, false)
             }
         });
@@ -537,7 +546,7 @@ $(function() {
         let html = "";
         subGamemodes.forEach(subGamemode => {
             html += `
-                <input class="filter-button ${groups}sub-gamemode-select" id=\"${idStart + game.id + gamemode.id + subGamemode.id + "-button"}\" type=\"button\" value=\"${subGamemode.name}"/>
+                <div class="filter-button ${groups}sub-gamemode-select" id=\"${idStart + game.id + gamemode.id + subGamemode.id + "-button"}\">${subGamemode.name}</div>
             `
         });
 
@@ -562,7 +571,7 @@ $(function() {
             let button = document.getElementById("groups-filters-" + boardGame.id + "-button");
             button.addEventListener("click", function () {
                 imageButtonClicked(button, "groups-board-game-select");
-                filterGroupsList(boardGame.id);
+                filterGroupsList(null, null, null, null, boardGame.id);
             })
         })
     }
@@ -666,8 +675,96 @@ $(function() {
         }
     }
 
-    function filterGroupsList(id) {
-        console.log(id);
+    function filterGroupsList(game, gamemode, subGamemode, rank, boardGame) {
+        if (boardGame != null || game != null) {
+            // Get all list game elements
+            let listEntries = document.getElementsByClassName("group-request-item-game");
+            for (let i = 0; i < listEntries.length; i++) {
+
+                if (boardGame) {
+                    let gameName = listEntries[i].attributes.getNamedItem("data-board-game").value;
+                    let parent = listEntries[i].parentElement;
+                    if (gameName !== boardGame) {
+                        if (!parent.classList.contains("list-item-hidden")) {
+                            parent.classList.add("list-item-hidden");
+                        }
+                    }
+                    else {
+                        parent.classList.remove("list-item-hidden");
+                    }
+                }
+                else if (game) {
+                    let gameName = listEntries[i].attributes.getNamedItem("data-game").value;
+                    let parent = listEntries[i].parentElement;
+                    if (gameName !== game) {
+                        if (!parent.classList.contains("list-item-hidden")) {
+                            parent.classList.add("list-item-hidden");
+                        }
+                    }
+                    else {
+                        parent.classList.remove("list-item-hidden");
+                    }
+                }
+            }
+        }
+
+        if (gamemode != null) {
+            // Get all list data elements
+            let listEntries = document.getElementsByClassName("group-request-item-data");
+            for (let i = 0; i < listEntries.length; i++) {
+                let gamemodeId = listEntries[i].attributes.getNamedItem("data-gamemode").value;
+                let parent = listEntries[i].parentElement;
+                if (!parent.classList.contains("list-item-hidden")) {
+                    if (gamemodeId !== gamemode) {
+                        parent.classList.add("list-item-hidden");
+                    } else {
+                        parent.classList.remove("list-item-hidden");
+                    }
+                }
+            }
+        }
+
+        if (subGamemode != null) {
+            // Get all list data elements
+            let listEntries = document.getElementsByClassName("group-request-item-data");
+            for (let i = 0; i < listEntries.length; i++) {
+                let subGamemodeId = listEntries[i].attributes.getNamedItem("data-subgamemode").value;
+                let parent = listEntries[i].parentElement;
+                if (!parent.classList.contains("list-item-hidden")) {
+                    if (subGamemodeId !== subGamemode) {
+                        parent.classList.add("list-item-hidden");
+                    }
+                    else {
+                        parent.classList.remove("list-item-hidden");
+                    }
+                }
+            }
+        }
+        if (rank != null) {
+            // // Get all list data elements
+            // let listEntries = document.getElementsByClassName("group-request-item-data");
+            // for (let i = 0; i < listEntries.length; i++) {
+            //     // Check if entry has ranks info
+            //     let ranksList = listEntries[i].attributes.getNamedItem("data-ranks").value;
+            //     let parent = listEntries[i].parentElement;
+            //     if (ranksList != null && ranksList.length === 0) {
+            //         let ranksArray = convertStringListToArray(ranksList);
+            //         if (ranksArray.include(rank)) {
+            //             parent.classList.remove("list")
+            //         }
+            //     }
+            //     else {
+            //         // Hide parent
+            //         if (!parent.classList.contains("list-item-hidden")) {
+            //             parent.classList.add("list-item-hidden");
+            //         }
+            //     }
+            // }
+        }
+    }
+
+    function convertStringListToArray(list) {
+        return list.split(", ");
     }
 
     // TODO: Do
@@ -689,17 +786,14 @@ $(function() {
     function selectRank(rank, button) {
         let buttons = document.getElementsByClassName("groups-rank-select");
         for (let i = 0; i<buttons.length; i++) {
-            console.log(buttons[i]);
             if (buttons[i] !== button) {
-                console.log(button);
-                console.log(buttons[i]);
                 buttons[i].classList.remove("selected-filter-button");
             }
         }
         if (!button.classList.contains("selected-filter-button")) {
             button.classList.add("selected-filter-button");
         }
-        filterGroupsList(rank);
+        filterGroupsList(null, null, null, rank, null);
 
     }
 
@@ -716,6 +810,7 @@ $(function() {
     function unclickOtherButtons(classname) {
         let otherButtonsAtSameHierarchy = document.getElementsByClassName(classname);
         for (let i = 0; i < otherButtonsAtSameHierarchy.length; i++) {
+            otherButtonsAtSameHierarchy[i].classList.remove("selected-filter-button")
             otherButtonsAtSameHierarchy[i].classList.remove("selected-button")
         }
     }
