@@ -13,3 +13,11 @@ blocks:
             - checkout
       secrets:
         - name: codemagic.yaml
+  - name: 'Block #2'
+    task:
+      secrets:
+        - name: codemagic.yaml
+      jobs:
+        - name: 'Job #1'
+          commands:
+            - cat codemagic.yaml
